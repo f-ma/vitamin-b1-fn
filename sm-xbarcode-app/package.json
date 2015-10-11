@@ -1,0 +1,42 @@
+{
+  "name": "xbarcode-vitamin-b1",
+  "version": "1.0.0",
+  "description": "Barcode web-based application. Integrate with ecommerce platforms, such as Magento...",
+  "main": "js/app.js",
+  "scripts": {
+    "start": "watchify js/app.js -o js/bundle.js -v -d",
+    "build": "browserify . -t [envify --NODE_ENV development] | uglifyjs -cm > js/bundle.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "barcode",
+    "ecommerce"
+  ],
+  "author": "huypq@smartosc.com",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:f-ma/vitamin-b1.git"
+  },
+  "dependencies": {
+    "classnames": "^2.1.3",
+    "flux": "^2.0.3",
+    "immutable": "^3.7.4",
+    "keymirror": "^0.1.1",
+    "object-assign": "^4.0.1",
+    "react": "^0.13.3"
+  },
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "envify": "^3.4.0",
+    "reactify": "^1.1.1",
+    "uglify-js": "^2.4.24",
+    "watchify": "^3.3.1"
+  },
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  }
+}

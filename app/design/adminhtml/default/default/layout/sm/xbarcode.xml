@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<layout>
+  <default></default>
+  <adminhtml_xbarcode>
+    <reference name="root">
+      <action method="setTemplate">
+        <template>sm/xbarcode/app.phtml</template>
+      </action>
+    </reference>
+  </adminhtml_xbarcode>
+  <adminhtml_xbarcode_main_index>
+    <update handle="adminhtml_xbarcode" />
+  </adminhtml_xbarcode_main_index>
+</layout>

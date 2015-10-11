@@ -1,0 +1,448 @@
+#xbarcodeapp {
+  height: 100%;
+}
+#xbarcodeapp .glhf {
+  height: 100%;
+}
+#xbarcodeapp .glhf > .container {
+  height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+}
+#xbarcodeapp .glhf > .container .main-wrapper {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+#printing-section {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+#printing-section.active {
+  display: block;
+}
+#printing-section .printer {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  background-color: white;
+  -webkit-box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.4);
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  overflow-y: auto;
+}
+#printing-section .printer header {
+  position: fixed;
+  width: 90%;
+  background-color: white;
+  font-size: .85em;
+  height: 33px;
+  line-height: 33px;
+}
+#printing-section .printer header .title {
+  padding-left: 1.2em;
+}
+#printing-section .printer header .progress-bar {
+  height: 2px;
+  width: 0%;
+  background-color: #1b7fcc;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}
+#printing-section .printer #product-barcodes {
+  margin-top: 50px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+}
+#printing-section .printer #product-barcodes canvas {
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  -webkit-align-self: flex-start;
+  align-self: flex-start;
+}
+#printing-section .printer .btn {
+  position: fixed;
+  right: 8%;
+  bottom: 10%;
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  height: 60px;
+  line-height: 60px;
+  width: 100px;
+}
+#printing-section .printer .btn:hover,
+#printing-section .printer .btn:focus,
+#printing-section .printer .btn:active {
+  border-color: transparent !important;
+}
+.symbology {
+  position: relative;
+}
+.symbology .wrapper {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+.symbology .wrapper select {
+  -webkit-align-self: stretch;
+  align-self: stretch;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  padding: 0px 20px 0px 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+}
+.symbology:after {
+  font-family: FontAwesome;
+  content: '\f107';
+  pointer-events: none;
+  position: absolute;
+  right: 8px;
+  opacity: .6;
+  font-size: 13px;
+  line-height: inherit;
+}
+#header {
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  z-index: 1;
+}
+#header .logo-container {
+  width: 20%;
+  min-width: 200px;
+  height: 60px;
+  line-height: 60px;
+  border-bottom: solid 1px #ddd;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  color: #009688;
+}
+#header .logo-container #logo {
+  display: block;
+  margin-right: 5px;
+  width: 120px;
+  height: 30px;
+  background: url('../images/graphs/logos/x-barcode-vitamin-b1-logo.png') no-repeat;
+}
+#header #title {
+  font-size: 18px;
+  font-weight: 600;
+  height: 60px;
+  line-height: 60px;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  padding-left: 30px;
+  background-color: #009688;
+  color: white;
+  text-transform: capitalize;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+}
+#sidebar {
+  background-color: #fff;
+  width: 0px;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+  border-right: solid 1px #ddd;
+}
+#sidebar .category {
+  padding: 15px 0;
+  overflow: hidden;
+}
+#sidebar .category a {
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  opacity: 0;
+  padding: 10px 0;
+  border-left: solid 4px transparent;
+  line-height: 30px;
+  transition: padding 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+#sidebar .category a .decorate {
+  font-size: 18px;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  line-height: inherit;
+  margin-right: 15px;
+}
+#sidebar .category a .label {
+  text-transform: capitalize;
+  width: 50%;
+  height: 30px;
+  line-height: inherit;
+}
+#sidebar .category a:hover {
+  border-color: #4d4d4d;
+}
+#sidebar .category a.active {
+  color: #fff;
+  background-color: #009688;
+  font-weight: bold;
+}
+#sidebar.active {
+  width: 20%;
+  min-width: 200px;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+}
+#sidebar.active .category a {
+  opacity: 1;
+  padding: 10px 15px;
+}
+#main-section {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+  padding: 15px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+#main-section .product-table .header {
+  display: -webkit-flex;
+  display: flex;
+  height: 35px;
+  line-height: 35px;
+}
+#main-section .product-table .header > * {
+  height: 100%;
+  line-height: inherit;
+  padding: 0 5px;
+}
+#main-section .product-table .header .search {
+  padding: 0px;
+  -webkit-flex-grow: 2;
+  flex-grow: 2;
+}
+#main-section .product-table .header .search > * {
+  height: 100%;
+  line-height: inherit;
+  border: solid 1px #eee;
+  border-right: none;
+}
+#main-section .product-table .header .search .label {
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  padding: 0 30px;
+}
+#main-section .product-table .header .search input[type="text"] {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  padding: 0px 10px;
+  font-size: inherit;
+  box-shadow: inset 0px 0px 1px rgba(0, 0, 0, 0.1);
+  -webkit-transition: border-color 0.2s ease-in-out;
+  -moz-transition: border-color 0.2s ease-in-out;
+  transition: border-color 0.2s ease-in-out;
+  border: solid 1px #eee;
+}
+#main-section .product-table .header .search input[type="text"]:focus {
+  outline: none;
+  border-color: #ccc;
+}
+#main-section .product-table .header .search .symbology {
+  border-left: none;
+}
+#main-section .product-table .header .search .symbology label {
+  padding: 0 5px;
+  opacity: .6;
+}
+#main-section .product-table .header .search button.submit {
+  height: 100%;
+  line-height: inherit;
+}
+#main-section .product-table .header .print {
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  text-align: center;
+  padding: 0;
+  width: 150px;
+}
+#main-section .product-table .header .print button {
+  display: block;
+  width: 100%;
+  height: 100%;
+  line-height: inherit;
+  font-weight: bold;
+}
+#main-section .product-table .body .item {
+  -webkit-display: flex;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-align-items: center;
+  align-items: center;
+  border: solid 1px #eee;
+  border-top: none;
+}
+#main-section .product-table .body .item > * {
+  padding: 1.2em;
+}
+#main-section .product-table .body .item .decorate img {
+  width: 60px;
+  max-height: 90px;
+  border: solid 1px #ddd;
+  border-radius: 1px;
+}
+#main-section .product-table .body .item .description {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+#main-section .product-table .body .item .description .name {
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+}
+#main-section .product-table .body .item .barcode-preview {
+  position: relative;
+  cursor: pointer;
+}
+#main-section .product-table .body .item .barcode-preview canvas {
+  display: block;
+  padding: 5px;
+  min-width: 180px;
+  height: 80px;
+  background-color: white;
+  border: solid 2px #4d4d4d;
+}
+#main-section .product-table .body .item .barcode-preview .label {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+#main-section .product-table .body .item .barcode-preview .label > * {
+  position: absolute;
+  display: block;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  font-size: 0.83333333em;
+  font-family: monospace;
+}
+#main-section .product-table .body .item .actions {
+  position: relative;
+  width: 150px;
+  padding: 0;
+  -webkit-align-self: stretch;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  align-self: stretch;
+  border-left: solid 1px #eee;
+}
+#main-section .product-table .body .item .actions > * {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  display: -webkit-flex;
+  display: flex;
+}
+#main-section .product-table .body .item .actions .symbology {
+  color: orange;
+}
+#main-section .product-table .body .item .actions .symbology .wrapper select {
+  padding: 0 20px;
+}
+#main-section .product-table .body .item .actions .symbology:after {
+  display: none !important;
+}
+#main-section .product-table .body .item .actions .print-container {
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  border-top: solid 1px #eeeeee;
+}
+#main-section .product-table .body .item .actions .print-container > * {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-grow: 0;
+  flex-grow: 0;
+  width: 50%;
+  -webkit-align-self: stretch;
+  align-self: stretch;
+  text-align: center;
+}
+#main-section .product-table .body .item .actions .print-container > *:first-child {
+  border-right: solid 1px #eee;
+}
+#main-section .product-table .body .item .actions .print-container .amount > *,
+#main-section .product-table .body .item .actions .print-container .print > * {
+  -webkit-align-self: stretch;
+  align-self: stretch;
+}
+#main-section .product-table .body .item .actions .print-container .amount input,
+#main-section .product-table .body .item .actions .print-container .print input,
+#main-section .product-table .body .item .actions .print-container .amount button,
+#main-section .product-table .body .item .actions .print-container .print button {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+}
+.setting-table {
+  padding: 0px 30px;
+}
+.setting-table .setting-group {
+  margin-top: 2.5em;
+}
+.setting-table .setting-group > .label {
+  font-weight: bold;
+  padding-bottom: 0.5em;
+  border-bottom: solid 1px #eee;
+}
+.setting-table .setting-group .item {
+  margin-top: 0.85em;
+}
+.setting-table .setting-group .item .pair {
+  display: flex;
+  display: -webkit-flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  align-items: center;
+  -webkit-align-items: center;
+}
+.setting-table .setting-group .item .guide {
+  opacity: .6;
+  font-style: italic;
+}
+.setting-table .setting-group .symbology {
+  height: 30px;
+  line-height: 30px;
+}
+.setting-table .setting-group .symbology select {
+  border-color: #eeeeee;
+}

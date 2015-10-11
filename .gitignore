@@ -1,0 +1,67 @@
+########################
+###       ROOT       ###
+########################
+/*
+!/app
+!/sm-xbarcode-app
+!.gitignore
+
+########################
+###       /app       ###
+########################
+/app/*
+/app/.htaccess
+!/app/code/
+!/app/etc/
+!/app/design/
+!/app/locale/
+
+########################
+###    /app/locale   ###
+########################
+app/locale/en_US
+
+########################
+###     /app/code    ###
+########################
+/app/code/*
+!/app/code/local/
+
+/app/code/local/*
+!/app/code/local/SM/
+
+########################
+###    /app/design   ###
+########################
+/app/design/*
+!/app/design/adminhtml/
+
+/app/design/adminhtml/default/default/*
+!/app/design/adminhtml/default/default/layout/
+!/app/design/adminhtml/default/default/template/
+
+/app/design/adminhtml/default/default/layout/*
+!/app/design/adminhtml/default/default/layout/sm/
+
+/app/design/adminhtml/default/default/template/*
+!/app/design/adminhtml/default/default/template/sm/
+
+########################
+###     /app/etc     ###
+########################
+/app/etc/*
+!/app/etc/modules/
+
+/app/etc/modules/*
+!/app/etc/modules/SM_XBarcode.xml
+
+################################
+###     /sm-xbarcode-app     ###
+################################
+/sm-xbarcode-app/*
+!/sm-xbarcode-app/css
+!/sm-xbarcode-app/less
+!/sm-xbarcode-app/fonts
+!/sm-xbarcode-app/images
+!/sm-xbarcode-app/js
+!/sm-xbarcode-app/package.json

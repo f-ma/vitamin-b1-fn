@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <SM_XBarcode>
+      <version>1.0.0</version>
+    </SM_XBarcode>
+  </modules>
+  <global>
+    <blocks></blocks>
+    <helpers></helpers>
+    <models></models>
+    <resources></resources>
+  </global>
+  <admin>
+    <routers>
+      <adminhtml>
+        <args>
+          <modules>
+            <!--With the before="Mage_Adminhtml" option, Magento WILL look for a controller file
+            in the folder of the module. Later, it WILL look in the Mage_Adminhtml module -->
+            <xBarcode before="Mage_Adminhtml">SM_XBarcode_Adminhtml</xBarcode>
+          </modules>
+        </args>
+      </adminhtml>
+    </routers>
+  </admin>
+  <adminhtml>
+    <layout>
+      <updates>
+        <xBarcode>
+          <file>sm/xbarcode.xml</file>
+        </xBarcode>
+      </updates>
+    </layout>
+  </adminhtml>
+</config>

@@ -1,0 +1,24 @@
+html,
+body {
+  height: auto;
+  overflow: auto;
+  overflow-y: auto;
+}
+#xbarcodeapp .glhf > .container {
+  display: none;
+}
+#xbarcodeapp button {
+  display: none !important;
+}
+#printing-section {
+  display: block !important;
+}
+#printing-section .printer {
+  position: relative;
+  width: 100%;
+  height: auto;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  overflow-y: auto;
+}

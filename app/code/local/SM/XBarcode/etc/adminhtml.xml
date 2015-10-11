@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+  <menu>
+    <SM translate="title">
+      <title>SmartOSC Modules</title>
+      <sort_order>0</sort_order>
+      <children>
+        <xbarcode>
+          <title>X-Barcode</title>
+          <sort_order>0</sort_order>
+          <children>
+            <xbarcode_launch translate="title">
+              <title>Launch</title>
+              <sort_order>0</sort_order>
+              <action>adminhtml/xBarcode_main</action>
+            </xbarcode_launch>
+          </children>
+        </xbarcode>
+      </children>
+    </SM>
+  </menu>
+</config>
