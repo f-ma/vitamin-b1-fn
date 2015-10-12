@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config>
+  <api>
+    <resources>
+      <xBarcode_product translate="title" module="xBarcode">
+        <model>xBarcode/product_api</model>
+        <title>The New XBarcode API</title>
+        <acl>xBarcode/product</acl>
+        <methods>
+          <list translate="title" module="xBarcode">
+            <title>List of products</title>
+            <method>items</method>
+          </list>
+        </methods>
+      </xBarcode_product>
+    </resources>
+
+    <!-- define a resource alias name by which our method will be called -->
+    <resources_alias>
+      <!-- whenever you want to call an API method using Magento v1 API, you will use "product" as a resource prefix -->
+      <product>xBarcode_product</product>
+    </resources_alias>
+    <v2>
+      <resources_function_prefix>
+         <product>xBarcodeProduct</product>
+      </resources_function_prefix>
+    </v2>
+    <acl>
+      <resources>
+        <xBarcode translate="title" module="xBarcode">
+          <title>Products</title>
+          <sort_order>5</sort_order>
+          <product translate="title" module="xBarcode">
+            <title>Product data</title>
+          </product>
+        </xBarcode>
+      </resources>
+    </acl>
+  </api>
+</config>

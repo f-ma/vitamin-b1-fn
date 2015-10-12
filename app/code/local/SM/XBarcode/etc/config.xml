@@ -7,8 +7,16 @@
   </modules>
   <global>
     <blocks></blocks>
-    <helpers></helpers>
-    <models></models>
+    <helpers>
+      <xBarcode>
+        <class>SM_XBarcode_Helper</class>
+      </xBarcode>
+    </helpers>
+    <models>
+      <xBarcode>
+        <class>SM_XBarcode_Model</class>
+      </xBarcode>
+    </models>
     <resources></resources>
   </global>
   <admin>
