@@ -61,7 +61,7 @@ var KeyValuePairs = React.createClass({
                 </div>
               </div>
               <div className={classNames('guide')}>
-                <p>The default barcode symbology that's used for Product searching, Order searching</p>
+                <p>The default product searching, order searching barcode symbology</p>
               </div>
             </div>
 
@@ -75,7 +75,28 @@ var KeyValuePairs = React.createClass({
                 </div>
               </div>
               <div className={classNames('guide')}>
-                <p>The barcode symbology that's used for Product barcode previewing on filter tables</p>
+                <p>The product's previewing barcode symbology on filter tables</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className={classNames('setting-group', 'setting-resource')}>
+          <div className={classNames('label')}>
+            <span>BARCODE RESOURCES</span>
+          </div>
+          <div className={classNames('children')}>
+            <div className={classNames('item')}>
+              <div className={classNames('pair')}>
+                <div className={classNames('label')}>
+                  <span>Product Attribute for Barcode Generating</span>
+                </div>
+                <div className={classNames('value')}>
+                  <SymbologySelector key="symbology-selector" htmlId={SettingConstants.HtmlId.Input.PREVIEW_SYMBOLOGY_SELECTOR} />
+                </div>
+              </div>
+              <div className={classNames('guide')}>
+                <p>Notice that some barcode symbologies support ONLY numeric character</p>
               </div>
             </div>
           </div>
