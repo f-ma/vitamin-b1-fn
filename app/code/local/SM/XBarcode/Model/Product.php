@@ -85,6 +85,9 @@ class SM_XBarcode_Model_Product {
   }
 
   public function getJSONProductsBySearchString($string, $limit = 10) {
+    if ($string === '') {
+      return $this->getJSONAllProducts();
+    }
     $productCollection = $this->_prepareProductCollection();
     $productCollection
     ->addAttributeToFilter(array(
