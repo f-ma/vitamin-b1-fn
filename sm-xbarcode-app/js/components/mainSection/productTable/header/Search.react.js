@@ -6,7 +6,7 @@ var Label = require('./search/Label.react');
 var SubmitButton = require('./../../../inputs/SubmitButton.react');
 var SymbologySelector = require('./../../../inputs/SymbologySelector.react');
 var TextInput = require('./../../../inputs/TextInput.react');
-var ProductAPI = require('../../../../utils/ProductAPI');
+var DataAPI = require('../../../../utils/Data');
 
 
 var Header = React.createClass({
@@ -39,7 +39,7 @@ var Header = React.createClass({
 
   handleTextInputOnKeyPress: function(event) {
     event.stopPropagation();
-    ProductAPI.getProductData();
+    DataAPI.getProductData(null, event.target.value);
   }
 });
 
