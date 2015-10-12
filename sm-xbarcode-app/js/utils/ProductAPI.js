@@ -8,7 +8,7 @@ var DataAction = require('../actions/DataActions');
  * @private
  */
 var _url = {
-  products: 'ProductData.json',
+  products: '/index.php/admin/xBarcode_product',
   orders: 'OrderData.json'
 };
 

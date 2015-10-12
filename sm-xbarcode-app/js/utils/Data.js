@@ -8,7 +8,8 @@ var DataAction = require('./../actions/DataActions');
  * @private
  */
 var _url = {
-  products: 'ProductData.json',
+  productsIndex: '/index.php/admin/xBarcode_product/index',
+  productsFilter: '/index.php/admin/xBarcode_product/filter',
   orders: 'OrderData.json',
   settings: 'SettingData.json'
 };
@@ -31,13 +32,14 @@ module.exports = {
     });
   },
 
-  getProductData: function() {
+  getProductData: function(filterType, string) {
     var data = [];
 
     $.ajax({
-      url: _url.products,
+      url: _url.productsFilter,
       dataType: 'json',
       type: 'GET',
+      data: {q: string},
       success: function(response) {
         data = response;
         DataAction.getProducts(data);
