@@ -12,6 +12,12 @@
 </head>
 <body>
     <section id="xbarcodeapp"></section>
+    <script>
+      (function(window, undefined){
+        window.PRODUCTS_KEY = '<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("xBarcode_product", "index"); ?>';
+        window.PRODUCTS_FILTER_KEY = '<?php echo Mage::getSingleton('adminhtml/url')->getSecretKey("xBarcode_product", "filter"); ?>';
+      })(window, undefined);
+    </script>
     <script src="/sm-xbarcode-app/js/bundle.js"></script>
 </body>
 </html>
