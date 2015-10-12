@@ -38,7 +38,7 @@ var Item = React.createClass({
 
     return (
       <div className={classNames('item')}>
-        <div className={classNames('decorate')}><img src={"images/thumbnails/" + item.thumbnail}/></div>
+        <div className={classNames('decorate')}><img src={item.thumbnail_url}/></div>
         <div className={classNames('description')}>
           <div className={classNames('name')}><span>{item.name}</span></div>
           <div className={classNames('id')}><span>ID: {item.id}</span></div>
