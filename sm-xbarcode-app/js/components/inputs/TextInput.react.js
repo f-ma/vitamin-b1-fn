@@ -5,9 +5,12 @@ var className = require('classnames');
 
 var TextInput = React.createClass({
   propTypes: {
+    htmlId: React.PropTypes.string,
     className: React.PropTypes.string,
     placeHolder: React.PropTypes.string,
     handleOnKeyPress: React.PropTypes.func,
+    handleOnKeyDown: React.PropTypes.func,
+    handleOnKeyUp: React.PropTypes.func,
     handleOnChange: React.PropTypes.func
   },
 
@@ -16,7 +19,7 @@ var TextInput = React.createClass({
   },
   render: function() {
     return (
-      <input className={this.props.className} type="text" placeholder={this.props.placeHolder} onKeyPress={this.props.handleOnKeyPress} onChange={this.props.handleOnChange} />
+      <input id={this.props.htmlId} className={this.props.className} type="text" placeholder={this.props.placeHolder} onKeyUp={this.props.handleOnKeyUp} onKeyDown={this.props.handleOnKeyDown} onKeyPress={this.props.handleOnKeyPress} onChange={this.props.handleOnChange} />
     );
   }
 });
