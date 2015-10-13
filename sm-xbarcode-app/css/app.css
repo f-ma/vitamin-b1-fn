@@ -255,7 +255,8 @@
 #main-section .product-table .header .search .label {
   -webkit-flex-grow: 0;
   flex-grow: 0;
-  padding: 0 30px;
+  width: 70px;
+  text-align: center;
 }
 #main-section .product-table .header .search input[type="text"] {
   -webkit-flex-grow: 1;
