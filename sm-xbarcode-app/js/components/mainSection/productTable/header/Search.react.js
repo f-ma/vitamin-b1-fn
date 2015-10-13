@@ -18,11 +18,19 @@ var Header = React.createClass({
     return null;
   },
 
+  getSearchStringInputHtmlId: function() {
+    return 'global-search-string-input';
+  },
+
+  getSearchStringInput: function() {
+    return $('#' + this.getSearchStringInputHtmlId());
+  },
+
   render: function () {
     return (
       <form className={className('search flex-container')} onSubmit={this.handleOnSubmit}>
         <Label key="label" />
-        <TextInput className="input" placeHolder="Search products by name, SKU, ID or barcode" handleOnKeyPress={this.handleTextInputOnKeyPress} />
+        <TextInput htmlId={this.getSearchStringInputHtmlId()} className="input" placeHolder="Search products by name, SKU, ID or barcode" handleOnKeyPress={this.handleTextInputOnKeyPress} />
         <SymbologySelector labelText="by" inputName="symbology" />
         <SubmitButton labelName="Search" iconName="fa fa-search" className="btn btn-glass submit" />
       </form>
@@ -39,7 +47,7 @@ var Header = React.createClass({
 
   handleTextInputOnKeyPress: function(event) {
     event.stopPropagation();
-    DataAPI.getProductData(null, event.target.value);
+    DataAPI.getProductData(null, event.target.value + event.key);
   }
 });
 
