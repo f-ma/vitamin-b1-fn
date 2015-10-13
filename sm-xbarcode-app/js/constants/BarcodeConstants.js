@@ -30,7 +30,8 @@ module.exports = assign(
       PRODUCT_BARCODE_CONTAINER: 'product-barcodes',
       RENDERING_STATUS_TITLE: 'progress-status-product-barcode-printing',
       RENDERING_STATUS_RENDERED_NUMBER: 'progress-rendered-number-status-product-barcode-printing',
-      RENDERING_STATUS_BAR: 'progress-bar-product-barcode-printing'
+      RENDERING_STATUS_BAR: 'progress-bar-product-barcode-printing',
+      PRODUCT_LOCKED_AREA: 'product-locked-area'
     }
   }
 );
