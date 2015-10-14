@@ -4,6 +4,7 @@ var React = require('react');
 var classNames = require('classnames');
 var Header = require('./productTable/Header.react');
 var Body = require('./productTable/Body.react');
+var DataAPI = require('./../../utils/Data');
 
 var ProductTable = React.createClass({
   propTypes: {
@@ -12,6 +13,10 @@ var ProductTable = React.createClass({
 
   getInitialState: function() {
     return null;
+  },
+
+  componentDidMount: function() {
+    DataAPI.getProductData(null, '');
   },
 
   render: function() {
