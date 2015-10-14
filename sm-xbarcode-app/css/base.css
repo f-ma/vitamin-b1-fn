@@ -4,7 +4,13 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
 }
-.no-select {
+.no-select,
+canvas,
+input,
+button,
+select,
+img,
+.label {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

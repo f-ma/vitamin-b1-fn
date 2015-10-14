@@ -246,7 +246,7 @@
   padding: 15px;
   overflow: hidden;
   overflow-y: auto;
-  .product-table {
+  .manager-table {
     .header {
       display: -webkit-flex;
       display: flex;
@@ -335,7 +335,7 @@
         -moz-transition: width .2s ease-in-out .2s;
         transition: width .2s ease-in-out .2s;
       }
-      .item {
+      & > .item {
         -webkit-display: flex;
         display: flex;
         -webkit-flex-flow: row nowrap;
@@ -346,9 +346,6 @@
         align-items: center;
         border: solid 1px #ddd;
         border-top: none;
-        & > * {
-          padding: 1.2em;
-        }
         .locker {
           -webkit-align-self: stretch;
           align-self: stretch;
@@ -446,13 +443,6 @@
           flex-shrink: 0;
           border-left: solid 1px #eee;
 
-          & > * {
-            -webkit-flex-grow: 1;
-            flex-grow: 1;
-            display: -webkit-flex;
-            display: flex;
-          }
-
           .symbology {
             color: orange;
             .wrapper {
@@ -493,6 +483,182 @@
               }
               button {
 
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .product-table {
+    .body {
+      & > .item {
+        & > * {
+          padding: 1.2em;
+        }
+        .actions {
+          & > * {
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+            display: -webkit-flex;
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+  .order-table {
+    .header {
+      .search {
+        .label {
+          width: 120px;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+        }
+        button.submit {
+          width: 200px;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+          border-right: solid 1px #ddd;
+        }
+      }
+
+    }
+    .body {
+      & > .item {
+        display: block;
+        .order-detail {
+          -webkit-display: flex;
+          display: flex;
+          -webkit-justify-content: space-between;
+          justify-content: space-between;
+          -webkit-align-items: center;
+          align-items: center;
+          border-bottom: solid 1px #ddd;
+          & > * {
+            padding: 1.2em;
+          }
+          .decorate {
+            text-transform: uppercase;
+            min-height: 120px;
+            width: 120px;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-align-self: stretch;
+            align-self: stretch;
+            -webkit-justify-content: center;
+            justify-content: center;
+            -webkit-align-items: center;
+            align-items: center;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            border-right: solid 1px #ddd;
+            font-size: 1.2em;
+            font-weight: bold;
+          }
+          .actions {
+            display: -webkit-flex;
+            display: flex;
+            -webkit-flex-flow: column nowrap;
+            flex-flow: column nowrap;
+            width: 200px;
+            -webkit-flex-shrink: 0;
+            flex-shrink: 0;
+            padding: 0;
+            & > *:first-child {
+              border-bottom: solid 1px #ddd;
+            }
+            .row {
+              button {
+                font-weight: bold;
+              }
+              display: -webkit-flex;
+              display: flex;
+              flex-grow: 1;
+              -webkit-align-content: stretch;
+              align-content: stretch;
+              & > * {
+                -webkit-flex-grow: 1;
+                flex-grow: 1;
+                &:first-child {
+                  border-right: solid 1px #ddd;
+                }
+              }
+            }
+          }
+        }
+        .product-container {
+          .product {
+            -webkit-display: flex;
+            display: flex;
+            -webkit-justify-content: space-between;
+            justify-content: space-between;
+            -webkit-align-items: center;
+            align-items: center;
+            & > * {
+              padding: 1.2em;
+            }
+            .quantities {
+              -webkit-display: flex;
+              display: flex;
+              -webkit-align-self: stretch;
+              align-self: stretch;
+              -webkit-flex-flow: column nowrap;
+              flex-flow: column nowrap;
+              -webkit-justify-content: center;
+              justify-content: center;
+              -webkit-align-items: center;
+              align-items: center;
+              width: 120px;
+              min-height: 120px;
+              font-size: 2em;
+              font-weight: bold;
+              -webkit-flex-shrink: 0;
+              flex-shrink: 0;
+              color: darkorange;
+              padding: 0;
+              & > * {
+                text-align: center;
+                padding: 5px 0;
+                &:first-child {
+                  min-width: 70px;
+                  border-bottom: solid 4px darkorange;
+                }
+              }
+            }
+            .actions {
+              display: -webkit-flex;
+              display: flex;
+              -webkit-flex-flow: row nowrap;
+              flex-flow: row nowrap;
+              justify-content: center;
+              align-items: center;
+              width: 200px;
+              -webkit-flex-shrink: 0;
+              flex-shrink: 0;
+              font-size: 30px;
+              padding: 15px 0;
+              border: none;
+              & > * {
+                border: solid 1px #aaa;
+                background-color: #bbb;
+                color: white;
+                border-radius: 50%;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                cursor: pointer;
+                transition: background-color .2s ease-in-out;
+                &:first-child {
+                  margin-right: 15px;
+                }
+                &:hover{
+                  background-color: #a9a9a9;
+                }
+                &:active {
+                  background-color: #999;
+                }
               }
             }
           }

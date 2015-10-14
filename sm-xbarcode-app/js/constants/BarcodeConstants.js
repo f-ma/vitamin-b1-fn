@@ -25,6 +25,10 @@ module.exports = assign(
           CANVAS: 'container-product-barcode-canvas',
           QUANTITY_INPUT: 'number-product-barcode-quantity',
           SYNBOLOGY_INPUT: 'string-product-barcode-symbology'
+        },
+        ORDER_BARCODE: {
+          PREVIEW: 'container-order-preview-barcode-canvas',
+          CANVAS: 'container-order-barcode-canvas'
         }
       },
       PRODUCT_BARCODE_CONTAINER: 'product-barcodes',
@@ -32,7 +36,8 @@ module.exports = assign(
       RENDERING_STATUS_RENDERED_NUMBER: 'progress-rendered-number-status-product-barcode-printing',
       RENDERING_STATUS_BAR: 'progress-bar-product-barcode-printing',
       PRODUCT_LOCKED_AREA: 'product-locked-area',
-      PRODUCT_LOADING_STATUS_BAR: 'progress-bar-product-loading'
+      PRODUCT_LOADING_STATUS_BAR: 'progress-bar-product-loading',
+      ORDER_LOADING_STATUS_BAR: 'progress-bar-order-loading'
     }
   }
 );

@@ -11,7 +11,7 @@ var BarcodeConstants = require('./../constants/BarcodeConstants');
 var _url = {
   productsIndex: '/index.php/admin/xBarcode_product/index',
   productsFilter: '/index.php/admin/xBarcode_product/filter',
-  orders: 'OrderData.json',
+  ordersIndex: '/index.php/admin/xBarcode_order/index',
   settings: 'SettingData.json'
 };
 
@@ -65,12 +65,13 @@ module.exports = {
     });
   },
 
-  getOrderData: function() {
+  getOrderData: function(string) {
     var data = [];
     $.ajax({
-      url: _url.orders,
+      url: _url.ordersIndex,
       dataType: 'json',
       type: 'GET',
+      data: {id: string},
       success: function(response) {
         data = response;
         DataAction.getOrders(data);
