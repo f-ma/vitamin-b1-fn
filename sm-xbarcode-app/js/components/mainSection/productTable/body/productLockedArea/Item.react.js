@@ -2,12 +2,12 @@
 
 var React = require('react');
 var classNames = require('classnames');
-var SymbologySelector = require('./../../../inputs/SymbologySelector.react');
-var PrinterActions = require('./../../../../actions/PrinterActions');
-var ProductActions = require('./../../../../actions/ProductActions');
-var BarcodeEncoderConstants = require('./../../../../stores/barcode/constants/EncoderConstant');
-var BarcodeStore = require('./../../../../stores/barcode/BarcodeStore');
-var BarcodeConstants = require('./../../../../constants/BarcodeConstants');
+var SymbologySelector = require('./../../../../inputs/SymbologySelector.react');
+var PrinterActions = require('./../../../../../actions/PrinterActions');
+var ProductActions = require('./../../../../../actions/ProductActions');
+var BarcodeEncoderConstants = require('./../../../../../stores/barcode/constants/EncoderConstant');
+var BarcodeStore = require('./../../../../../stores/barcode/BarcodeStore');
+var BarcodeConstants = require('./../../../../../constants/BarcodeConstants');
 
 function _getState() {
   return null;
@@ -16,43 +16,30 @@ function _getState() {
 var Item = React.createClass({
   propTypes: {
     data: React.PropTypes.object,
-    index: React.PropTypes.number,
-    isLocked: React.PropTypes.bool
+    index: React.PropTypes.number
   },
 
   getInitialState: function () {
     return _getState();
   },
 
-  _fillPreviewBarcode: function() {
-    setTimeout(function(productPreviewBarcodeHtmlId, barcodeValue){
-      BarcodeStore.draw($('#' + productPreviewBarcodeHtmlId), barcodeValue, {
-        width: 2,
-        displayValue: false
-      })
-    }, 1, this.getProductPreviewBarcodeHtmlId(), this.props.data.id);
-  },
-
   componentDidMount: function () {
-    this._fillPreviewBarcode();
+    BarcodeStore.draw($('#' + this.getProductPreviewBarcodeHtmlId()), this.props.data.id, {
+      width: 2,
+      displayValue: false
+    })
   },
 
   componentWillUnmount: function () {
 
   },
 
-  componentDidUpdate: function() {
-    this._fillPreviewBarcode();
-  },
-
-
   render: function() {
     var item = this.props.data;
-    var lockerButtonOnClickHandler = (!!this.props.isLocked) ? this._handleItemUnlockerButtonOnClick  : this._handleItemLockerButtonOnClick;
 
     return (
       <div className={classNames('item')}>
-        <div className={classNames('locker', 'flex-container', {unlock: this.props.isLocked})} onClick={lockerButtonOnClickHandler}>
+        <div className={classNames('locker', 'flex-container', 'unlock')} onClick={this._handleItemUnLockerOnClick}>
         </div>
         <div className={classNames('decorate')}><img src={item.thumbnail_url}/></div>
         <div className={classNames('description')}>
@@ -85,19 +72,15 @@ var Item = React.createClass({
   },
 
   getProductPreviewBarcodeHtmlId: function() {
-    return (BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.PREVIEW +
-      BarcodeConstants.HtmlId.DELIMITER +
-      this.props.data.id +
-      BarcodeConstants.HtmlId.DELIMITER +
-      ((!!this.props.isLocked) ? 1 : 0));
+    return BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.PREVIEW + BarcodeConstants.HtmlId.DELIMITER + this.props.data.id;
+  },
+
+  getBarcodeCanvasId: function() {
+    return  BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.CANVAS + BarcodeConstants.HtmlId.DELIMITER + this.props.data.id;
   },
 
   getBarcodeQuantityInputId: function() {
-    return (BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.QUANTITY_INPUT +
-      BarcodeConstants.HtmlId.DELIMITER +
-      this.props.data.id +
-      BarcodeConstants.HtmlId.DELIMITER +
-      ((!!this.props.isLocked) ? 1 : 0));
+    return BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.QUANTITY_INPUT + BarcodeConstants.HtmlId.DELIMITER + this.props.data.id;
   },
 
   getBarcodeQuantity: function() {
@@ -105,11 +88,7 @@ var Item = React.createClass({
   },
 
   getBarcodeSymbologyInputId: function() {
-    return (BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.SYNBOLOGY_INPUT +
-      BarcodeConstants.HtmlId.DELIMITER +
-      this.props.data.id +
-      BarcodeConstants.HtmlId.DELIMITER +
-      ((!!this.props.isLocked) ? 1 : 0));
+    return BarcodeConstants.HtmlId.PREFIX.PRODUCT_BARCODE.SYNBOLOGY_INPUT + BarcodeConstants.HtmlId.DELIMITER + this.props.data.id;
   },
 
   getBarcodeSymbology: function() {
@@ -141,17 +120,11 @@ var Item = React.createClass({
     });
   },
 
-  _handleItemLockerButtonOnClick: function(event) {
+  _handleItemLockerOnClick: function(event) {
     event.stopPropagation();
     var item = this.props.data;
 
     ProductActions.lock(item);
-  },
-  _handleItemUnlockerButtonOnClick: function(event) {
-    event.stopPropagation();
-    var item = this.props.data;
-
-    ProductActions.unlock(item);
   }
 });
 
