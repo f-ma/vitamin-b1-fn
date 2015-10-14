@@ -21,7 +21,7 @@ var ProductTable = React.createClass({
 
   render: function() {
     return (
-      <div className={classNames('product-table')}>
+      <div className={classNames('manager-table', 'product-table')}>
         <Header key="header" />
         <Body key="body" />
       </div>
