@@ -303,6 +303,7 @@
 }
 #main-section .product-table .body .progress-bar {
   position: absolute;
+  top: -1px;
   z-index: 1;
   opacity: 0;
   height: 2px;
