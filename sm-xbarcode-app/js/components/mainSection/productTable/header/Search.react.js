@@ -7,6 +7,7 @@ var SubmitButton = require('./../../../inputs/SubmitButton.react');
 var SymbologySelector = require('./../../../inputs/SymbologySelector.react');
 var TextInput = require('./../../../inputs/TextInput.react');
 var DataAPI = require('../../../../utils/Data');
+var TimeoutStore = require('./../../../../stores/barcode/TimeoutStore');
 
 
 var Header = React.createClass({
@@ -39,7 +40,7 @@ var Header = React.createClass({
 
   handleOnSubmit: function() {
     /**
-     * TODO: handle onsubmit event
+     * TODO: handle onSubmit event
      */
     console.log('Handle onSubmit event!');
 
@@ -47,7 +48,16 @@ var Header = React.createClass({
 
   handleTextInputOnKeyPress: function(event) {
     event.stopPropagation();
-    DataAPI.getProductData(null, event.target.value + event.key);
+    var searchString = event.target.value + event.key;
+
+    var timeouts = TimeoutStore.getTimeouts();
+    if (!!timeouts && timeouts['productSearchStringInputTimeout']) {
+      clearTimeout(timeouts['productSearchStringInputTimeout']);
+    }
+    var productSearchStringInputTimeout = setTimeout(function(string) {
+      DataAPI.getProductData(null, string);
+    }, 400, searchString);
+    TimeoutStore.push('productSearchStringInputTimeout', productSearchStringInputTimeout);
   }
 });
 
