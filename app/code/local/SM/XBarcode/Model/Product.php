@@ -76,7 +76,7 @@ class SM_XBarcode_Model_Product {
     return json_encode($this->_prepareProductData($productCollection));
   }
 
-  public function getJSONProductsByName($string, $limit = 10) {
+  public function getJSONProductsByName($string, $limit = 5) {
     $productCollection = $this->_prepareProductCollection();
     $productCollection->addAttributeToFilter('name', array(array('like' => '%'.$string.'%')))
     ->setOrder('name', 'ASC')
@@ -84,7 +84,7 @@ class SM_XBarcode_Model_Product {
     return json_encode($this->_prepareProductData($productCollection));
   }
 
-  public function getJSONProductsBySearchString($string, $limit = 10) {
+  public function getJSONProductsBySearchString($string, $limit = 5) {
     if ($string === '') {
       return $this->getJSONAllProducts();
     }
@@ -99,7 +99,7 @@ class SM_XBarcode_Model_Product {
     return json_encode($this->_prepareProductData($productCollection));
   }
 
-  public function getJSONAllProducts($limit = 10) {
+  public function getJSONAllProducts($limit = 5) {
     $productCollection = $this->_prepareProductCollection()
     ->setOrder('entity_id', 'DESC')
     ->setPageSize($limit);
