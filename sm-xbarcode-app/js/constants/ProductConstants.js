@@ -14,5 +14,7 @@ var keyMirror = require('keymirror');
 module.exports = keyMirror({
   PRODUCT_GET: null,
   PRODUCT_GET_ALL: null,
-  PRODUCT_GET_ONE: null
+  PRODUCT_GET_ONE: null,
+  LOCK: null,
+  UNLOCK: null
 });
