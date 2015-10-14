@@ -298,6 +298,23 @@
   line-height: inherit;
   font-weight: bold;
 }
+#main-section .product-table .body {
+  position: relative;
+}
+#main-section .product-table .body .progress-bar {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  height: 2px;
+  width: 0;
+  background-color: #009688;
+  -webkit-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: width 0.2s ease-in-out 0.2s;
+  -moz-transition: width 0.2s ease-in-out 0.2s;
+  transition: width 0.2s ease-in-out 0.2s;
+}
 #main-section .product-table .body .item {
   -webkit-display: flex;
   display: flex;

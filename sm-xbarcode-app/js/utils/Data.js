@@ -1,6 +1,7 @@
 "use strict";
 
 var DataAction = require('./../actions/DataActions');
+var BarcodeConstants = require('./../constants/BarcodeConstants');
 
 /**
  *
@@ -35,14 +36,28 @@ module.exports = {
   getProductData: function(filterType, string) {
     var data = [];
 
-    $.ajax({
+    var xhr = $.ajax({
       url: _url.productsFilter,
       dataType: 'json',
       type: 'GET',
       data: {q: string},
+      beforeSend: function() {
+        setTimeout(function() {
+          $('#' + BarcodeConstants.HtmlId.PRODUCT_LOADING_STATUS_BAR).css('opacity', 1).css('width', '30%');
+        }, 0);
+
+      },
       success: function(response) {
+        setTimeout(function() {
+          $('#' + BarcodeConstants.HtmlId.PRODUCT_LOADING_STATUS_BAR).css('opacity', 1).css('width', '100%');
+        }, 0);
         data = response;
         DataAction.getProducts(data);
+      },
+      complete: function() {
+        setTimeout(function() {
+          $('#' + BarcodeConstants.HtmlId.PRODUCT_LOADING_STATUS_BAR).css('opacity', 0).css('width', '0');
+        }, 500);
       },
       error: function(xhr, status, err) {
         console.error(_url.products, status, err.toString());

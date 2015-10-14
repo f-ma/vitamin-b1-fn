@@ -6,6 +6,7 @@ var Item = require('./body/Item.react');
 var ProductLockedArea = require('./body/ProductLockArea.react');
 var ProductConstants = require('./../../../constants/ProductConstants');
 var ProductStore = require('./../../../stores/base/ProductStore');
+var BarcodeConstants = require('./../../../constants/BarcodeConstants');
 
 function _getState() {
   return {
@@ -32,6 +33,7 @@ var Header = React.createClass({
     return (
       <div className="body">
         <ProductLockedArea key="product-lock-area" />
+        <div id={BarcodeConstants.HtmlId.PRODUCT_LOADING_STATUS_BAR} className={classNames('progress-bar')}></div>
         {this.state.productData.map(function (item, itemIndex) {
           return (
             <Item key={"item" + itemIndex} data={item} index={itemIndex} />

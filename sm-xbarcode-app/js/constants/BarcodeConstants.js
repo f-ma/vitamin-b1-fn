@@ -31,7 +31,8 @@ module.exports = assign(
       RENDERING_STATUS_TITLE: 'progress-status-product-barcode-printing',
       RENDERING_STATUS_RENDERED_NUMBER: 'progress-rendered-number-status-product-barcode-printing',
       RENDERING_STATUS_BAR: 'progress-bar-product-barcode-printing',
-      PRODUCT_LOCKED_AREA: 'product-locked-area'
+      PRODUCT_LOCKED_AREA: 'product-locked-area',
+      PRODUCT_LOADING_STATUS_BAR: 'progress-bar-product-loading'
     }
   }
 );
