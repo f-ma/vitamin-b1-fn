@@ -78,7 +78,7 @@ button {
 input:hover,
 select:hover,
 button:hover {
-  border-color: #ddd !important;
+  border-color: #ccc !important;
 }
 input:focus,
 select:focus,

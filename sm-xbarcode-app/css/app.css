@@ -249,7 +249,7 @@
 #main-section .product-table .header .search > * {
   height: 100%;
   line-height: inherit;
-  border: solid 1px #eee;
+  border: solid 1px #ddd;
   border-right: none;
 }
 #main-section .product-table .header .search .label {
@@ -267,11 +267,11 @@
   -webkit-transition: border-color 0.2s ease-in-out;
   -moz-transition: border-color 0.2s ease-in-out;
   transition: border-color 0.2s ease-in-out;
-  border: solid 1px #eee;
+  border: solid 1px #ddd;
 }
 #main-section .product-table .header .search input[type="text"]:focus {
   outline: none;
-  border-color: #ccc;
+  border-color: #bbb;
 }
 #main-section .product-table .header .search .symbology {
   border-left: none;
@@ -307,7 +307,7 @@
   justify-content: space-between;
   -webkit-align-items: center;
   align-items: center;
-  border: solid 1px #eee;
+  border: solid 1px #ddd;
   border-top: none;
 }
 #main-section .product-table .body .item > * {
@@ -323,7 +323,7 @@
   -webkit-flex-shrink: 0;
   flex-shrink: 0;
   width: 70px;
-  border-right: solid 1px #eee;
+  border-right: solid 1px #ddd;
   cursor: pointer;
 }
 #main-section .product-table .body .item .locker:hover {
@@ -336,6 +336,19 @@
 #main-section .product-table .body .item .locker:after {
   content: "+";
   font-weight: bold;
+}
+#main-section .product-table .body .item .locker.unlock {
+  background-color: #eee;
+}
+#main-section .product-table .body .item .locker.unlock:after {
+  content: "-" !important;
+}
+#main-section .product-table .body .item .locker.unlock:hover {
+  background-color: #ddd;
+  color: inherit;
+}
+#main-section .product-table .body .item .locker.unlock:active {
+  background-color: #d9d9d9;
 }
 #main-section .product-table .body .item .decorate img {
   width: 60px;
