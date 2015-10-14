@@ -14,7 +14,7 @@ function _getState() {
   };
 }
 
-var Header = React.createClass({
+var Body = React.createClass({
   propTypes: {},
 
   getInitialState: function () {
@@ -48,4 +48,4 @@ var Header = React.createClass({
   }
 });
 
-module.exports = Header;
+module.exports = Body;
