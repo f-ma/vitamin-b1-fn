@@ -4,6 +4,7 @@ var React = require('react');
 var MainStoreConstants = require('../constants/MainSectionConstants');
 var classNames = require('classnames');
 var ProductTable = require('./mainSection/ProductTable.react');
+var OrderTable = require('./mainSection/OrderTable.react');
 var SettingTable = require('./mainSection/SettingTable.react');
 
 function _getMainSectionState() {
@@ -20,10 +21,7 @@ var MainSection = React.createClass({
         );
       case MainStoreConstants.MAIN_SECTION_MANAGERS_ORDERS:
         return (
-        /**
-         * TODO: render product filter component
-         */
-          <h1>ORDER FILTER STANDS HERE!</h1>
+          <OrderTable key="order-table" />
         );
       case MainStoreConstants.MAIN_SECTION_PRINTERS_BARCODES:
         return (
