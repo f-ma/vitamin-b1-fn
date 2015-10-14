@@ -45,7 +45,6 @@ module.exports = {
         setTimeout(function() {
           $('#' + BarcodeConstants.HtmlId.PRODUCT_LOADING_STATUS_BAR).css('opacity', 1).css('width', '30%');
         }, 0);
-
       },
       success: function(response) {
         setTimeout(function() {
@@ -72,9 +71,22 @@ module.exports = {
       dataType: 'json',
       type: 'GET',
       data: {id: string},
+      beforeSend: function() {
+        setTimeout(function() {
+          $('#' + BarcodeConstants.HtmlId.ORDER_LOADING_STATUS_BAR).css('opacity', 1).css('width', '30%');
+        }, 0);
+      },
       success: function(response) {
+        setTimeout(function() {
+          $('#' + BarcodeConstants.HtmlId.ORDER_LOADING_STATUS_BAR).css('opacity', 1).css('width', '100%');
+        }, 0);
         data = response;
         DataAction.getOrders(data);
+      },
+      complete: function() {
+        setTimeout(function() {
+          $('#' + BarcodeConstants.HtmlId.ORDER_LOADING_STATUS_BAR).css('opacity', 0).css('width', '0');
+        }, 500);
       },
       error: function(xhr, status, err) {
         console.error(_url.orders, status, err.toString());

@@ -47,9 +47,17 @@ var Header = React.createClass({
   },
 
   handleTextInputOnKeyPress: function(event) {
-    /**
-     * TODO: handle text input key press
-     */
+    event.stopPropagation();
+    var searchString = event.target.value + event.key;
+
+    var timeouts = TimeoutStore.getTimeouts();
+    if (!!timeouts && timeouts['orderSearchStringInputTimeout']) {
+      clearTimeout(timeouts['orderSearchStringInputTimeout']);
+    }
+    var orderSearchStringInputTimeout = setTimeout(function(string) {
+      DataAPI.getOrderData(string);
+    }, 400, searchString);
+    TimeoutStore.push('orderSearchStringInputTimeout', orderSearchStringInputTimeout);
   }
 });
 
