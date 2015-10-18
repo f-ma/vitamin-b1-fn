@@ -15,6 +15,7 @@ var assign = require('object-assign');
 module.exports = assign(
   keyMirror({
     RENDER_PRODUCT_BARCODE: null,
+    RENDER_BARCODE: null
   }),
   {
     HtmlId: {
@@ -29,6 +30,13 @@ module.exports = assign(
         ORDER_BARCODE: {
           PREVIEW: 'container-order-preview-barcode-canvas',
           CANVAS: 'container-order-barcode-canvas'
+        },
+        BARCODE: {
+          STRING_INPUT: 'string-barcode-content',
+          PREVIEW: 'container-preview-barcode-canvas',
+          CANVAS: 'container-barcode-canvas',
+          QUANTITY_INPUT: 'number-barcode-quantity',
+          SYNBOLOGY_INPUT: 'string-barcode-symbology'
         }
       },
       PRODUCT_BARCODE_CONTAINER: 'product-barcodes',

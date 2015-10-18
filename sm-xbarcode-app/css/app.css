@@ -651,6 +651,93 @@
 #main-section .order-table .body > .item .product-container .product .actions > *:active {
   background-color: #999;
 }
+#main-section .barcode-table {
+  margin: 0 3%;
+}
+#main-section .barcode-table .header .barcode-content {
+  display: -webkit-flex;
+  display: flex;
+  height: 35px;
+  line-height: 35px;
+}
+#main-section .barcode-table .header .barcode-content > * {
+  border: solid 1px #ddd;
+  border-right: none;
+}
+#main-section .barcode-table .header .barcode-content > *:last-child {
+  border-right: solid 1px #ddd;
+}
+#main-section .barcode-table .header .barcode-content .label {
+  width: 120px;
+  text-align: center;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+#main-section .barcode-table .header .barcode-content .input {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  padding: 0 15px;
+}
+#main-section .barcode-table .header .barcode-content .symbology {
+  width: 120px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+#main-section .barcode-table .body .printer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  border: solid 1px #ddd;
+  border-top: none;
+  height: 120px;
+}
+#main-section .barcode-table .body .printer > * {
+  display: -webkit-flex;
+  display: flex;
+}
+#main-section .barcode-table .body .printer .barcode-preview {
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+#main-section .barcode-table .body .printer .barcode-preview canvas {
+  max-width: 92%;
+}
+#main-section .barcode-table .body .printer .barcode-quantity {
+  border-left: solid 1px #ddd;
+  width: 120px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+}
+#main-section .barcode-table .body .printer .barcode-quantity input {
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+  padding: 10px;
+}
+#main-section .barcode-table .body .printer .barcode-quantity input:focus,
+#main-section .barcode-table .body .printer .barcode-quantity input:hover {
+  box-shadow: inset 0px 0px 2px rgba(0, 0, 0, 0.1);
+}
+#main-section .barcode-table .body .printer .barcode-print {
+  width: 120px;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  align-items: stretch;
+  border-left: solid 1px #ddd;
+}
+#main-section .barcode-table .body .printer .barcode-print button {
+  font-weight: bold;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
 .setting-table {
   padding: 0px 30px;
 }

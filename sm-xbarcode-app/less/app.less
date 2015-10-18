@@ -667,6 +667,97 @@
       }
     }
   }
+  .barcode-table {
+    margin: 0 3%;
+    .header {
+      .barcode-content {
+        display: -webkit-flex;
+        display: flex;
+        height: 35px;
+        line-height: 35px;
+        & > * {
+          border: solid 1px #ddd;
+          border-right: none;
+          &:last-child {
+            border-right: solid 1px #ddd;
+          }
+        }
+        .label {
+          width: 120px;
+          text-align: center;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+        }
+        .input {
+          -webkit-flex-grow: 1;
+          flex-grow: 1;
+          padding: 0 15px;
+        }
+        .symbology {
+          width: 120px;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+        }
+      }
+    }
+
+    .body {
+      .printer {
+        display: -webkit-flex;
+        display: flex;
+        -webkit-align-items: stretch;
+        align-items: stretch;
+        border: solid 1px #ddd;
+        border-top: none;
+        height: 120px;
+        & > * {
+          display: -webkit-flex;
+          display: flex;
+        }
+        .barcode-preview {
+          -webkit-justify-content: center;
+          justify-content: center;
+          -webkit-align-items: center;
+          align-items: center;
+          -webkit-flex-grow: 1;
+          flex-grow: 1;
+          overflow-x: auto;
+          overflow-y: hidden;
+          canvas {
+            max-width: 92%;
+          }
+        }
+        .barcode-quantity {
+          border-left: solid 1px #ddd;
+          width: 120px;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+          input {
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 2em;
+            padding: 10px;
+            &:focus, &:hover {
+              box-shadow: inset 0px 0px 2px rgba(0,0,0,.1);
+            }
+          }
+        }
+        .barcode-print {
+          width: 120px;
+          -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+          align-items: stretch;
+          border-left: solid 1px #ddd;
+          button {
+            font-weight: bold;
+            -webkit-flex-grow: 1;
+            flex-grow: 1;
+          }
+        }
+      }
+    }
+  }
 }
 
 .setting-table {

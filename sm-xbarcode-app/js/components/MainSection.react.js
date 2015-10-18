@@ -5,6 +5,7 @@ var MainStoreConstants = require('../constants/MainSectionConstants');
 var classNames = require('classnames');
 var ProductTable = require('./mainSection/ProductTable.react');
 var OrderTable = require('./mainSection/OrderTable.react');
+var BarcodeTable = require('./mainSection/BarcodeTable.react');
 var SettingTable = require('./mainSection/SettingTable.react');
 
 function _getMainSectionState() {
@@ -25,10 +26,7 @@ var MainSection = React.createClass({
         );
       case MainStoreConstants.MAIN_SECTION_PRINTERS_BARCODES:
         return (
-        /**
-         * TODO: render barcode printer component
-         */
-          <h1>BARCODE PRINTER STANDS HERE!</h1>
+          <BarcodeTable key="barcode-table" />
         );
       case MainStoreConstants.MAIN_SECTION_PRINTERS_DOCUMENTS:
         return (

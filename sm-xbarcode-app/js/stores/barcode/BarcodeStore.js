@@ -41,28 +41,30 @@ var _options = {
  * @type {boolean}
  * @private
  */
-var _isRendering = false;
+var _isRenderingBarcodes = false;
 
 /**
  *
  * @type {Array}
  * @private
  */
-var _productBarcodeRenderQueue = [];
+var _barcodeRenderQueue = [];
+
 
 /**
  *
  * @type {number}
  * @private
  */
-var _totalNumberProductBarcodeRendered = 0;
+var _totalNumberBarcodeRendered = 0;
 
 /**
  *
  * @type {boolean}
  * @private
  */
-var _isProductBarcodeRenderingComplete = true;
+var _isBarcodeRenderingComplete = true;
+
 
 /**
  *
@@ -70,7 +72,7 @@ var _isProductBarcodeRenderingComplete = true;
  * @private
  */
 function _push(item) {
-  _productBarcodeRenderQueue.push(item);
+  _barcodeRenderQueue.push(item);
 }
 
 /**
@@ -193,28 +195,29 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
     return Object.keys(EncoderConstants.ENCODERS);
   },
 
-  getTotalNumberProductBarcodeOnQueue: function() {
+  getTotalNumberBarcodeOnQueue: function() {
     var total = 0;
-    _productBarcodeRenderQueue.forEach(function(queueItem, queueItemIndex) {
+    _barcodeRenderQueue.forEach(function(queueItem, queueItemIndex) {
       total += queueItem.quantity;
     });
     return total;
   },
 
-  getTotalNumberProductBarcodeQueueItem: function() {
-    return _productBarcodeRenderQueue.length;
+  getTotalNumberBarcodeQueueItem: function() {
+    return _barcodeRenderQueue.length;
   },
 
-  getProductBarcodeRenderQueueItemByIndex: function(index) {
-    return _productBarcodeRenderQueue[index];
+  getBarcodeRenderQueueItemByIndex: function(index) {
+    return _barcodeRenderQueue[index];
   },
 
-  getTotalNumberProductBarcodeRendered: function() {
-    return _totalNumberProductBarcodeRendered;
+  getTotalNumberBarcodeRendered: function() {
+    return _totalNumberBarcodeRendered;
   },
 
-  getIsProductBarcodeRenderingComplete: function() {
-    return _isProductBarcodeRenderingComplete;
+
+  getIsBarcodeRenderingComplete: function() {
+    return _isBarcodeRenderingComplete;
   },
 
   draw: function(target, string, options) {
@@ -276,13 +279,13 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
     }
   },
 
-  renderProductBarcode: function() {
-    if (_isRendering) {
+  renderBarcodes: function() {
+    if (_isRenderingBarcodes) {
       console.log('Previous rendering has not been done...');
       return false;
     }
 
-    _isRendering = true;
+    _isRenderingBarcodes = true;
 
     /**
      *
@@ -303,20 +306,33 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
     var quantityBishop = 0;
 
     (function _goThroughQueueItems() {
-      if (queueItemIndex < self.getTotalNumberProductBarcodeQueueItem()) {
-        _isProductBarcodeRenderingComplete = false;
+      if (queueItemIndex < self.getTotalNumberBarcodeQueueItem()) {
+        _isBarcodeRenderingComplete = false;
 
-        var renderItem = self.getProductBarcodeRenderQueueItemByIndex(queueItemIndex);
+        var renderItem = self.getBarcodeRenderQueueItemByIndex(queueItemIndex);
         if (!renderItem.isRendered) {
+          var barcodeQuantity = renderItem.quantity;
+          var barcodeContent = '';
+          var canvasIdPrefix = '';
+          if (renderItem.product) {
+            canvasIdPrefix = renderItem.product.id;
+            barcodeContent = renderItem.product.id;
+          } else if (renderItem.anonymous) {
+            canvasIdPrefix = renderItem.anonymous.id;
+            barcodeContent = renderItem.anonymous.content;
+          } else {
+            console.error('Null barcode value given');
+            return false;
+          }
 
           (function _run(){
 
-            if (quantityBishop < renderItem.quantity) {
-              /** Create a new product barcode canvas */
-              var newCanvas = $('<canvas/>', {'id': renderItem.product.id + BarcodeConstants.HtmlId.DELIMITER + quantityBishop});
+            if (quantityBishop < barcodeQuantity) {
 
+              /** Create a new product barcode canvas */
+              var newCanvas = $('<canvas/>', {'id': canvasIdPrefix + BarcodeConstants.HtmlId.DELIMITER + quantityBishop});
               /** Draw barcode's bars on top of the new product barcode canvas  */
-              self.draw(newCanvas, renderItem.product.id, renderItem.options);
+              self.draw(newCanvas, barcodeContent, renderItem.options);
 
               /** Add the new product barcode canvas to printing section container */
               PrintingSectionStore.addProductBarcodeItem(newCanvas);
@@ -324,13 +340,13 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
               /** Emit the changing of adding a brand new item to printing barcode container */
               PrintingSectionStore.emitChange();
               quantityBishop++;
-              _totalNumberProductBarcodeRendered++;
+              _totalNumberBarcodeRendered++;
 
               setTimeout(_run, 1);
 
             } else {
               quantityBishop = 0;
-              _isRendering = false;
+              _isRenderingBarcodes = false;
               renderItem.isRendered = true;
 
               PrintingSectionStore.emitChange();
@@ -343,7 +359,7 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
           setTimeout(_goThroughQueueItems, 1);
         }
       } else {
-        _isProductBarcodeRenderingComplete = true;
+        _isBarcodeRenderingComplete = true;
         PrintingSectionStore.emitChange();
       }
     })();
@@ -354,7 +370,7 @@ BarcodeStore.dispatchToken = AppDispatcher.register(function(action) {
   switch(action.actionType) {
     case BarcodeConstants.RENDER_PRODUCT_BARCODE:
       _push(action.item);
-      BarcodeStore.renderProductBarcode();
+      BarcodeStore.renderBarcodes();
       BarcodeStore.emitChange();
       break;
   }

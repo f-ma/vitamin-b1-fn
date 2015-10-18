@@ -28,6 +28,13 @@ var PrinterActions = {
       actionType: BarcodeConstants.RENDER_PRODUCT_BARCODE,
       item: item
     });
+  },
+
+  renderBarcode: function(item) {
+    AppDispatcher.dispatch({
+      actionType: BarcodeConstants.RENDER_BARCODE,
+      item: item
+    });
   }
 };
 

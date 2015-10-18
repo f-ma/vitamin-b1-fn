@@ -15,7 +15,7 @@ var XBarcodeStore = require('../stores/barcode/BarcodeStore');
 var Header = require('./Header.react');
 var Sidebar = require('./Sidebar.react');
 var MainSection = require('./MainSection.react');
-var PrintingSection = require('./PrintingSection.react');
+var PrintingSection = require('./PrintingSection.react.js');
 //var Footer = require('./Footer.react');
 
 var NavigatorStore = require('../stores/ui/NavigatorStore');

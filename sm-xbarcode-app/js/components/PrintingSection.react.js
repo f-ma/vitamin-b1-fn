@@ -9,9 +9,9 @@ var BarcodeStore = require('./../stores/barcode/BarcodeStore');
 function _getState() {
   return {
     active: PrintingStore.getIsActivated(),
-    isProductBarcodeRenderingComplete: BarcodeStore.getIsProductBarcodeRenderingComplete(),
-    totalNumberProductBarcodeOnQueue: BarcodeStore.getTotalNumberProductBarcodeOnQueue(),
-    totalNumberProductBarcodeRendered: BarcodeStore.getTotalNumberProductBarcodeRendered()
+    isProductBarcodeRenderingComplete: BarcodeStore.getIsBarcodeRenderingComplete(),
+    totalNumberProductBarcodeOnQueue: BarcodeStore.getTotalNumberBarcodeOnQueue(),
+    totalNumberProductBarcodeRendered: BarcodeStore.getTotalNumberBarcodeRendered()
   };
 }
 var PrintingSection = React.createClass({
