@@ -72,21 +72,21 @@ var Body = React.createClass({
     var self = this;
     var barcodeQuantity = this.getBarcodeQuantity();
 
-    console.log(this.getBarcodeStringInputValue);
+    if (this.getBarcodeStringInputValue() != '') {
+      PrinterActions.show();
 
-    PrinterActions.show();
-
-    PrinterActions.renderProductBarcode({
-      quantity: barcodeQuantity,
-      product: false,
-      anonymous: {
-        id: (new Date).getTime(),
-        content: this.getBarcodeStringInputValue()
-      },
-      options: {
-        format: BarcodeEncoderConstants.ENCODERS[this.getBarcodeSymbology()]
-      }
-    });
+      PrinterActions.renderProductBarcode({
+        quantity: barcodeQuantity,
+        product: false,
+        anonymous: {
+          id: (new Date).getTime(),
+          content: this.getBarcodeStringInputValue()
+        },
+        options: {
+          format: BarcodeEncoderConstants.ENCODERS[this.getBarcodeSymbology()]
+        }
+      });
+    }
   }
 
 });
