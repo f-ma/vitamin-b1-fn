@@ -15,9 +15,24 @@
     <models>
       <xBarcode>
         <class>SM_XBarcode_Model</class>
+        <resourceModel>sm_xbarcode_resource</resourceModel>
       </xBarcode>
+      <sm_xbarcode_resource>
+          <class>SM_XBarcode_Model_Resource</class>
+          <entities>
+              <setting>
+                  <table>sm_xbarcode_setting</table>
+              </setting>
+          </entities>
+      </sm_xbarcode_resource>
     </models>
-    <resources></resources>
+    <resources>
+        <sm_xbarcode_setup>
+            <setup>
+                <module>SM_XBarcode</module>
+            </setup>
+        </sm_xbarcode_setup>
+    </resources>
   </global>
   <admin>
     <routers>
