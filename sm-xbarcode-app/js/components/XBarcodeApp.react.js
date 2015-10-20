@@ -55,9 +55,11 @@ var XBarcodeApp = React.createClass({
     return _getXBarcodeState();
   },
 
-  componentDidMount: function () {
+  componentWillMount: function() {
     _prepareData();
+  },
 
+  componentDidMount: function () {
     NavigatorStore.addToggleMainNavigatorListener(this._onToggleMainNavigator);
     SidebarStore.addChangeListener(this._onChange);
     TitleStore.addChangeListener(this._onChange);
