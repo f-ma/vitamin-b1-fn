@@ -9,10 +9,10 @@ var BarcodeConstants = require('./../constants/BarcodeConstants');
  * @private
  */
 var _url = {
-  productsIndex: '/index.php/admin/xBarcode_product/index',
-  productsFilter: '/index.php/admin/xBarcode_product/filter',
-  ordersIndex: '/index.php/admin/xBarcode_order/index',
-  settings: 'SettingData.json'
+  productIndex: '/index.php/admin/xBarcode_product/index',
+  productFilter: '/index.php/admin/xBarcode_product/filter',
+  orderIndex: '/index.php/admin/xBarcode_order/index',
+  settingIndex: '/index.php/admin/xBarcode_setting/index'
 };
 
 module.exports = {
@@ -20,7 +20,7 @@ module.exports = {
     var data = [];
 
     $.ajax({
-      url: _url.settings,
+      url: _url.settingIndex,
       dataType: 'json',
       type: 'GET',
       success: function(response) {
@@ -37,7 +37,7 @@ module.exports = {
     var data = [];
 
     var xhr = $.ajax({
-      url: _url.productsFilter,
+      url: _url.productFilter,
       dataType: 'json',
       type: 'GET',
       data: {q: string},
@@ -67,7 +67,7 @@ module.exports = {
   getOrderData: function(string) {
     var data = [];
     $.ajax({
-      url: _url.ordersIndex,
+      url: _url.orderIndex,
       dataType: 'json',
       type: 'GET',
       data: {id: string},
