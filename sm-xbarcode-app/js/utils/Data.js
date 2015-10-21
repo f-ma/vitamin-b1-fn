@@ -8,15 +8,11 @@ var BarcodeConstants = require('./../constants/BarcodeConstants');
  * @type {object}
  * @private
  */
-var _url = {
-  productIndex: '/index.php/admin/xBarcode_product/index',
-  productFilter: '/index.php/admin/xBarcode_product/filter',
-  orderIndex: '/index.php/admin/xBarcode_order/index',
-  settingIndex: '/index.php/admin/xBarcode_setting/index'
-};
+var _url = __URLs;
 
 module.exports = {
-  getSettingData: function() {
+  getSettingData: function(callback) {
+    console.log('Fetching setting data...');
     var data = [];
 
     $.ajax({
@@ -26,6 +22,12 @@ module.exports = {
       success: function(response) {
         data = response;
         DataAction.getSettings(data);
+      },
+      complete: function() {
+        console.log('Fetching setting data completed!');
+        if (typeof callback === 'function') {
+          callback();
+        }
       },
       error: function(xhr, status, err) {
         console.error(_url.settings, status, err.toString());
