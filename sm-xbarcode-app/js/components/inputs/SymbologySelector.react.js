@@ -8,7 +8,8 @@ var SymbologySelector = React.createClass({
   propTypes: {
     labelText: React.PropTypes.string,
     inputName: React.PropTypes.string,
-    htmlId: React.PropTypes.string
+    htmlId: React.PropTypes.string,
+    defaultInputValue: React.PropTypes.string
   },
 
   getInitialState: function() {
@@ -20,20 +21,27 @@ var SymbologySelector = React.createClass({
       (<label>{this.props.labelText}</label>) :
       null;
   },
+
   getInputName: function() {
     return !!this.props.inputName ?
       this.props.inputName :
       null;
   },
+
   getHtmlId: function() {
     return !!this.props.htmlId ?
       this.props.htmlId :
       null;
   },
+
+  getDefaultValue: function() {
+    return (this.props.defaultInputValue) ? this.props.defaultInputValue : "CODE128";
+  },
+
   getSymbologyOptions: function() {
     var availabelSymbologies = BarcodeStore.getAvailableSymbologies();
     return (
-      <select id={this.getHtmlId()} name={this.getInputName()}>
+      <select id={this.getHtmlId()} name={this.getInputName()} defaultValue={this.getDefaultValue()}>
         {availabelSymbologies.map(function(value, index) {
           return (
             <option key={index} value={value}>{value}</option>
