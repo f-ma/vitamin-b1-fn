@@ -3,6 +3,8 @@
 var React = require('react');
 var classNames = require('classnames');
 var BarcodeStore = require('./../../stores/barcode/BarcodeStore');
+var SettingStore = require('./../../stores/base/SettingStore');
+var SettingConstants = require('./../../constants/base/SettingConstants');
 
 var SymbologySelector = React.createClass({
   propTypes: {
@@ -35,7 +37,8 @@ var SymbologySelector = React.createClass({
   },
 
   getDefaultValue: function() {
-    return (this.props.defaultInputValue) ? this.props.defaultInputValue : "CODE128";
+    var settings = SettingStore.getSettingData();
+    return (this.props.defaultInputValue) ? this.props.defaultInputValue : settings[SettingConstants.CodeName.DEFAULT_GLOBAL_SYMBOLOGY].value;
   },
 
   getSymbologyOptions: function() {
