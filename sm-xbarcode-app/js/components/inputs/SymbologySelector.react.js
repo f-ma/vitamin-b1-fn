@@ -11,7 +11,8 @@ var SymbologySelector = React.createClass({
     labelText: React.PropTypes.string,
     inputName: React.PropTypes.string,
     htmlId: React.PropTypes.string,
-    defaultInputValue: React.PropTypes.string
+    defaultInputValue: React.PropTypes.string,
+    onChangeHandler: React.PropTypes.func
   },
 
   getInitialState: function() {
@@ -44,7 +45,7 @@ var SymbologySelector = React.createClass({
   getSymbologyOptions: function() {
     var availabelSymbologies = BarcodeStore.getAvailableSymbologies();
     return (
-      <select id={this.getHtmlId()} name={this.getInputName()} defaultValue={this.getDefaultValue()}>
+      <select id={this.getHtmlId()} name={this.getInputName()} defaultValue={this.getDefaultValue()} onChange={this.props.onChangeHandler}>
         {availabelSymbologies.map(function(value, index) {
           return (
             <option key={index} value={value}>{value}</option>
