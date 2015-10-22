@@ -18,24 +18,22 @@ class SM_XBarcode_Model_Setting extends Mage_Core_Model_Abstract
     $data = array();
 
     foreach ($settingCollection as $setting) {
-
-      array_push($data, array(
-        $setting->getCodeName() => array(
-          "id" => $setting->getid(),
-          "label" => $setting->getLabel(),
-          "description" => $setting->getDescription(),
-          "value" => $setting->getValue()
-          )
-        ));
-      }
-
-      return $data;
+      $data[$setting->getCodeName()] = array(
+        "id" => $setting->getid(),
+        "code_name" => $setting->getCodeName(),
+        "label" => $setting->getLabel(),
+        "description" => $setting->getDescription(),
+        "value" => $setting->getValue()
+      );
     }
 
-    public function getJSONAllSettings() {
-      $settingCollection = $this->_prepareSettingCollection()
-      ->setOrder('id', 'DESC');
-
-      return json_encode($this->_prepareSettingData($settingCollection));
-    }
+    return $data;
   }
+
+  public function getJSONAllSettings() {
+    $settingCollection = $this->_prepareSettingCollection()
+    ->setOrder('id', 'DESC');
+
+    return json_encode($this->_prepareSettingData($settingCollection));
+  }
+}
