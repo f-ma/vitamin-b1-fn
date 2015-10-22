@@ -5,16 +5,15 @@ var classNames = require('classnames');
 var SettingConstants = require('./../../../constants/base/SettingConstants');
 var SettingStore = require('./../../../stores/base/SettingStore');
 var SymbologySelector = require('./../../inputs/SymbologySelector.react');
+var Item = require('./keyValuePairs/Item.react');
 
 function _getState() {
-  return {
-    settings: SettingStore.getSettingData()
-  }
+  return null;
 }
 
 var KeyValuePairs = React.createClass({
   propTypes: {
-
+    settings: React.PropTypes.object
   },
 
   getInitialState: function () {
@@ -22,14 +21,15 @@ var KeyValuePairs = React.createClass({
   },
 
   componentDidMount: function () {
-    SettingStore.addChangeListener(this._onChange);
+
   },
 
   componentWillUnmount: function () {
-    SettingStore.removeChangeListener(this._onChange);
+
   },
 
   render: function() {
+    var settings = this.props.settings;
     return (
       <div className={classNames('setting-key-value-pairs')}>
         <div className={classNames('setting-group', 'setting-symbology')}>
@@ -37,47 +37,13 @@ var KeyValuePairs = React.createClass({
             <span>SYMBOLOGY</span>
           </div>
           <div className={classNames('children')}>
-            <div id={SettingConstants.HtmlId.Item.DEFAULT_SYMBOLOGY} key={SettingConstants.HtmlId.Item.DEFAULT_SYMBOLOGY} className={classNames('item')}>
-              <div className={classNames('pair')}>
-                <div className={classNames('label')}>
-                  <span>Default Symbology</span>
-                </div>
-                <div className={classNames('value')}>
-                  <SymbologySelector key="symbology-selector" htmlId={SettingConstants.HtmlId.Input.DEFAULT_SYMBOLOGY_SELECTOR} />
-                </div>
-              </div>
-              <div className={classNames('guide')}>
-                <p>The default barcode symbology</p>
-              </div>
-            </div>
 
-            <div id={SettingConstants.HtmlId.Item.SEARCH_SYMBOLOGY} key={SettingConstants.HtmlId.Item.SEARCH_SYMBOLOGY} className={classNames('item')}>
-              <div className={classNames('pair')}>
-                <div className={classNames('label')}>
-                  <span>Search Symbology</span>
-                </div>
-                <div className={classNames('value')}>
-                  <SymbologySelector key="symbology-selector" htmlId={SettingConstants.HtmlId.Input.SEARCH_SYMBOLOGY_SELECTOR} />
-                </div>
-              </div>
-              <div className={classNames('guide')}>
-                <p>The default product searching, order searching barcode symbology</p>
-              </div>
-            </div>
+            <Item htmlId={SettingConstants.HtmlId.Item.DEFAULT_SYMBOLOGY} key={SettingConstants.HtmlId.Item.DEFAULT_SYMBOLOGY} data={settings[SettingConstants.CodeName.DEFAULT_GLOBAL_SYMBOLOGY]} />
 
-            <div id={SettingConstants.HtmlId.Item.PREVIEW_SYMBOLOGY} key={SettingConstants.HtmlId.Item.PREVIEW_SYMBOLOGY} className={classNames('item')}>
-              <div className={classNames('pair')}>
-                <div className={classNames('label')}>
-                  <span>Preview Symbology</span>
-                </div>
-                <div className={classNames('value')}>
-                  <SymbologySelector key="symbology-selector" htmlId={SettingConstants.HtmlId.Input.PREVIEW_SYMBOLOGY_SELECTOR} />
-                </div>
-              </div>
-              <div className={classNames('guide')}>
-                <p>The product's previewing barcode symbology on filter tables</p>
-              </div>
-            </div>
+            <Item htmlId={SettingConstants.HtmlId.Item.SEARCH_SYMBOLOGY} key={SettingConstants.HtmlId.Item.SEARCH_SYMBOLOGY} data={settings[SettingConstants.CodeName.DEFAULT_SEARCH_SYMBOLOGY]} />
+
+            <Item htmlId={SettingConstants.HtmlId.Item.PREVIEW_SYMBOLOGY} key={SettingConstants.HtmlId.Item.PREVIEW_SYMBOLOGY} data={settings[SettingConstants.CodeName.DEFAULT_PREVIEW_SYMBOLOGY]} />
+
           </div>
         </div>
 
@@ -86,28 +52,12 @@ var KeyValuePairs = React.createClass({
             <span>BARCODE RESOURCES</span>
           </div>
           <div className={classNames('children')}>
-            <div className={classNames('item')}>
-              <div className={classNames('pair')}>
-                <div className={classNames('label')}>
-                  <span>Product Attribute for Barcode Generating</span>
-                </div>
-                <div className={classNames('value')}>
-                  <SymbologySelector key="symbology-selector" htmlId={SettingConstants.HtmlId.Input.PREVIEW_SYMBOLOGY_SELECTOR} />
-                </div>
-              </div>
-              <div className={classNames('guide')}>
-                <p>Notice that some barcode symbologies support ONLY numeric character</p>
-              </div>
-            </div>
+            <Item htmlId={SettingConstants.HtmlId.Item.PRODUCT_BARCODE_GENERATING_ATTRIBUTE} key={SettingConstants.HtmlId.Item.PRODUCT_BARCODE_GENERATING_ATTRIBUTE} data={settings[SettingConstants.CodeName.PRODUCT_BARCODE_GENERATING_ATTRIBUTE]} />
           </div>
         </div>
       </div>
     );
   },
-
-  _onChange: function() {
-    this.setState(_getState());
-  }
 
 });
 
