@@ -28,10 +28,6 @@ var NavigatorStore = assign({}, EventEmitter.prototype, {
 
   emitToggleMainNavigator: function() {
     this.emit(TOGGLE_MAIN_NAVIGATOR_EVENT);
-
-    if (typeof __ENV !== 'undefined' && __ENV === "development") {
-      loggerify.logStoreEmitting('NavigatorStore', 'TOGGLE_MAIN_NAVIGATOR_EVENT');
-    }
   },
 
   /**
@@ -55,10 +51,6 @@ AppDispatcher.register(function(action) {
       _toggleMainNavigator();
       NavigatorStore.emitToggleMainNavigator();
       break;
-  }
-
-  if (typeof __ENV !== 'undefined' && __ENV === "development") {
-    loggerify.logStoreRegistering('NavigatorStore');
   }
 });
 

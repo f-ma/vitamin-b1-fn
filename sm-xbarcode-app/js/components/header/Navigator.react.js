@@ -19,10 +19,6 @@ var Navigator = React.createClass({
 
   _onClick: function() {
     NavigatorActions.toggleMain();
-
-    if (typeof __ENV !== 'undefined' && __ENV === "development") {
-      loggerify.logViewInteracting('header/Navigator', '_onClick');
-    }
   }
 });
 

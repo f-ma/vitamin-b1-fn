@@ -10,10 +10,6 @@ var NavigatorActions = {
     AppDispatcher.dispatch({
       actionType: NavigatorConstants.NAVIGATOR_TOGGLE_MAIN
     });
-
-    if (typeof __ENV !== 'undefined' && __ENV === "development") {
-      loggerify.logActionCreating('NavigatorActions', NavigatorConstants.NAVIGATOR_TOGGLE_MAIN);
-    }
   },
 
   /**
