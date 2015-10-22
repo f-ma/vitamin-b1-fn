@@ -8,7 +8,9 @@ var KeyValuePairs = require('./settingTable/KeyValuePairs.react');
 var Saver = require('./settingTable/Saver.react');
 
 function _getState() {
-  return null;
+  return {
+    settings: SettingStore.getSettingData()
+  };
 }
 
 var SettingTable = React.createClass({
@@ -20,24 +22,25 @@ var SettingTable = React.createClass({
   },
 
   componentDidMount: function () {
-
+    SettingStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function () {
-
+    SettingStore.removeChangeListener(this._onChange);
   },
 
   render: function() {
     return (
       <div className={classNames('setting-table')}>
         <IO key="io" />
-        <KeyValuePairs key="key-value-pairs" />
-        <Saver key="saver" />
+        <KeyValuePairs key="key-value-pairs" settings={this.state.settings} />
       </div>
     );
+  },
+
+  _onChange: function() {
+    this.setState(_getState());
   }
-
-
 });
 
 module.exports = SettingTable;
