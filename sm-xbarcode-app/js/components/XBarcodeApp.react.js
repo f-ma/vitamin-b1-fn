@@ -43,7 +43,7 @@ function _getXBarcodeState() {
 }
 
 function _loadSetting() {
-  Data.getSettingData();
+  
 }
 
 function _prepareData() {
