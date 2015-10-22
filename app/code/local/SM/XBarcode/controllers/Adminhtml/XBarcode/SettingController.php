@@ -18,15 +18,27 @@
  */
 
  class SM_XBarcode_Adminhtml_XBarcode_SettingController extends Mage_Adminhtml_Controller_Action {
+   protected function _validateFormKey($formKey) {
+     $sessionFormKey = Mage::getSingleton('core/session')->getFormKey();
+     return ($formKey === $sessionFormKey);
+   }
    public function indexAction() {
       $this->getResponse()->setBody(Mage::getModel("xBarcode/setting")->getJSONAllSettings());
    }
 
    public function filterAction() {
-     
+     echo Mage::getSingleton('core/session')->getFormKey();
    }
 
    public function updateAction() {
-     die('Just setting_update/id');
+     if (!$this->_validateFormKey($this->getRequest()->getParam('fk'))) {
+       return false;
+     }
+
+     $setting = Mage::getModel('xBarcode/setting')->load($this->getRequest()->getParam('id'));
+     $setting->setValue($this->getRequest()->getParam('val'));
+     $setting->save();
+     
+     $this->getResponse()->setBody(Mage::getModel("xBarcode/setting")->getJSONAllSettings());
    }
  }
