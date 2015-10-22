@@ -7,6 +7,8 @@ var assign = require('object-assign');
 
 var PrintingSectionStore = require('./../ui/PrintingSectionStore');
 var BarcodeConstants = require('./../../constants/BarcodeConstants');
+var SettingStore = require('./../base/SettingStore');
+var SettingConstants = require('./../../constants/base/SettingConstants');
 
 /** Individual encoders declaration */
 var CODE128 = require('./encoders/CODE128');
@@ -27,7 +29,7 @@ var _options = {
   width: 2,
   height:	100,
   quite: 10,
-  format:	EncoderConstants.ENCODERS.CODE128,
+  format:	EncoderConstants.ENCODERS[SettingStore.getSettingData(SettingConstants.CodeName.DEFAULT_GLOBAL_SYMBOLOGY).value],
   displayValue: true,
   font: "monospace",
   textAlign: "center",
