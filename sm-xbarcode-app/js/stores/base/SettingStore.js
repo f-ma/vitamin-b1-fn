@@ -6,7 +6,7 @@ var keyMirror = require('keymirror');
 
 var CHANGE_EVENT = 'change';
 
-var _data = [];
+var _data = {};
 
 function _setData(data) {
   _data = data;
@@ -17,8 +17,12 @@ var SettingStore = assign({}, EventEmitter.prototype, {
    *
    * @returns {*}
    */
-  getSettingData: function() {
-    return _data;
+  getSettingData: function(codeName) {
+    return (codeName) ? _data[codeName] : _data;
+  },
+
+  getMergedSettingData: function(data) {
+     return assign({}, _data, data);
   },
 
   emitChange: function() {
@@ -37,6 +41,10 @@ var SettingStore = assign({}, EventEmitter.prototype, {
 SettingStore.dispatchToken = AppDispatcher.register(function(payloads) {
   switch(payloads.actionType) {
     case SettingConstants.SETTING_GET:
+      _setData(payloads.data);
+      SettingStore.emitChange();
+      break;
+    case SettingConstants.SETTING_UPDATE:
       _setData(payloads.data);
       SettingStore.emitChange();
       break;
