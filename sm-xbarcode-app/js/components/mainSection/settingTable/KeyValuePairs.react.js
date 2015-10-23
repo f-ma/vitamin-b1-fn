@@ -37,13 +37,9 @@ var KeyValuePairs = React.createClass({
             <span>SYMBOLOGY</span>
           </div>
           <div className={classNames('children')}>
-
             <Item htmlId={SettingConstants.HtmlId.Item.DEFAULT_SYMBOLOGY} key={SettingConstants.HtmlId.Item.DEFAULT_SYMBOLOGY} data={settings[SettingConstants.CodeName.DEFAULT_GLOBAL_SYMBOLOGY]} />
-
             <Item htmlId={SettingConstants.HtmlId.Item.SEARCH_SYMBOLOGY} key={SettingConstants.HtmlId.Item.SEARCH_SYMBOLOGY} data={settings[SettingConstants.CodeName.DEFAULT_SEARCH_SYMBOLOGY]} />
-
             <Item htmlId={SettingConstants.HtmlId.Item.PREVIEW_SYMBOLOGY} key={SettingConstants.HtmlId.Item.PREVIEW_SYMBOLOGY} data={settings[SettingConstants.CodeName.DEFAULT_PREVIEW_SYMBOLOGY]} />
-
           </div>
         </div>
 
@@ -52,7 +48,7 @@ var KeyValuePairs = React.createClass({
             <span>BARCODE RESOURCES</span>
           </div>
           <div className={classNames('children')}>
-            <Item htmlId={SettingConstants.HtmlId.Item.PRODUCT_BARCODE_GENERATING_ATTRIBUTE} key={SettingConstants.HtmlId.Item.PRODUCT_BARCODE_GENERATING_ATTRIBUTE} data={settings[SettingConstants.CodeName.PRODUCT_BARCODE_GENERATING_ATTRIBUTE]} />
+            <Item htmlId={SettingConstants.HtmlId.Item.PRODUCT_BARCODE_GENERATING_ATTRIBUTE} key={SettingConstants.HtmlId.Item.PRODUCT_BARCODE_GENERATING_ATTRIBUTE} data={settings[SettingConstants.CodeName.PRODUCT_BARCODE_GENERATING_ATTRIBUTE]} valuePattern={2} />
           </div>
         </div>
       </div>
