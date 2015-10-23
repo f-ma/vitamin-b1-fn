@@ -7,6 +7,8 @@ var PrinterActions = require('./../../../../actions/PrinterActions');
 var ProductActions = require('./../../../../actions/ProductActions');
 var BarcodeEncoderConstants = require('./../../../../stores/barcode/constants/EncoderConstant');
 var BarcodeStore = require('./../../../../stores/barcode/BarcodeStore');
+var SettingStore = require('./../../../../stores/base/SettingStore');
+var SettingConstants = require('./../../../../constants/base/SettingConstants');
 var BarcodeConstants = require('./../../../../constants/BarcodeConstants');
 
 function _getState() {
@@ -25,12 +27,26 @@ var Item = React.createClass({
   },
 
   _fillPreviewBarcode: function() {
+    var item = this.props.data;
+    var barcodeValue = '';
+    switch (SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_GENERATING_ATTRIBUTE).value) {
+      case 'ID':
+        barcodeValue = item.id;
+        break;
+      case 'SKU':
+        barcodeValue = item.sku;
+        break;
+      default:
+        barcodeValue = item.id;
+        break;
+    }
+
     setTimeout(function(productPreviewBarcodeHtmlId, barcodeValue){
       BarcodeStore.draw($('#' + productPreviewBarcodeHtmlId), barcodeValue, {
         width: 2,
         displayValue: false
       })
-    }, 1, this.getProductPreviewBarcodeHtmlId(), this.props.data.id);
+    }, 1, this.getProductPreviewBarcodeHtmlId(), barcodeValue);
   },
 
   componentDidMount: function () {
@@ -45,6 +61,17 @@ var Item = React.createClass({
     this._fillPreviewBarcode();
   },
 
+  getBarcodePreviewLabel: function() {
+    var item = this.props.data;
+    switch (SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_GENERATING_ATTRIBUTE).value) {
+      case 'ID':
+        return item.id;
+      case 'SKU':
+        return item.sku;
+      default:
+        return item.id;
+    }
+  },
 
   render: function() {
     var item = this.props.data;
@@ -66,7 +93,7 @@ var Item = React.createClass({
         <div className={classNames('barcode-preview')}>
           <canvas id={this.getProductPreviewBarcodeHtmlId()} />
           <div className={classNames('label')}>
-            <h5>{item.id}</h5>
+            <h5>{this.getBarcodePreviewLabel()}</h5>
           </div>
         </div>
         <form className={classNames('actions')} onSubmit={this._handlePrintFormOnSubmit}>
