@@ -3,6 +3,7 @@
 var React = require('react');
 var classNames = require('classnames');
 var SymbologySelector = require('./../../../inputs/SymbologySelector.react');
+var BarcodeSourceSelector = require('./../../../inputs/BarcodeSourceSelector.react');
 var PrinterActions = require('./../../../../actions/PrinterActions');
 var ProductActions = require('./../../../../actions/ProductActions');
 var BarcodeEncoderConstants = require('./../../../../stores/barcode/constants/EncoderConstant');
@@ -12,6 +13,11 @@ var Data = require('./../../../../utils/Data');
 
 function _getState() {
   return null;
+}
+
+var _valuePattern = {
+  symbology: 1,
+  barcodeSource: 2
 }
 
 var Item = React.createClass({
@@ -27,6 +33,20 @@ var Item = React.createClass({
 
   },
 
+  getValuePattern: function() {
+    var item = this.props.data;
+    switch (this.props.valuePattern) {
+      case _valuePattern.barcodeSource:
+        return (
+          <BarcodeSourceSelector key={item.code_name} htmlId={item.code_name} defaultInputValue={item.value} onChangeHandler={this._handleSelectorOnChange} />
+        );
+      default:
+        return (
+          <SymbologySelector key={item.code_name} htmlId={item.code_name} defaultInputValue={item.value} onChangeHandler={this._handleSelectorOnChange} />
+        );
+    }
+  },
+
   render: function() {
     var item = this.props.data;
 
@@ -37,7 +57,7 @@ var Item = React.createClass({
             <span>{item.label}</span>
           </div>
           <div className={classNames('value')}>
-            <SymbologySelector key={item.code_name} htmlId={item.code_name} defaultInputValue={item.value} onChangeHandler={this._handleSymbologyOnChange} />
+            {this.getValuePattern()}
           </div>
         </div>
         <div className={classNames('guide')}>
@@ -47,7 +67,7 @@ var Item = React.createClass({
     );
   },
 
-  _handleSymbologyOnChange: function(event) {
+  _handleSelectorOnChange: function(event) {
     var item = this.props.data;
     Data.Setting.update({id: item.id, value: event.target.value});
   }
