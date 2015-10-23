@@ -93,10 +93,12 @@
 #printing-section .printer .btn:active {
   border-color: transparent !important;
 }
-.symbology {
+.symbology,
+.selector {
   position: relative;
 }
-.symbology .wrapper {
+.symbology .wrapper,
+.selector .wrapper {
   display: -webkit-flex;
   display: flex;
   -webkit-align-self: stretch;
@@ -104,7 +106,8 @@
   -webkit-flex-grow: 1;
   flex-grow: 1;
 }
-.symbology .wrapper select {
+.symbology .wrapper select,
+.selector .wrapper select {
   -webkit-align-self: stretch;
   align-self: stretch;
   -webkit-flex-grow: 1;
@@ -114,7 +117,8 @@
   cursor: pointer;
   background: none;
 }
-.symbology:after {
+.symbology:after,
+.selector:after {
   font-family: FontAwesome;
   content: '\f107';
   pointer-events: none;
@@ -763,10 +767,12 @@
 .setting-table .setting-group .item .guide {
   opacity: .6;
 }
-.setting-table .setting-group .symbology {
+.setting-table .setting-group .symbology,
+.setting-table .setting-group .selector {
   height: 30px;
   line-height: 30px;
 }
-.setting-table .setting-group .symbology select {
+.setting-table .setting-group .symbology select,
+.setting-table .setting-group .selector select {
   border-color: #eeeeee;
 }
