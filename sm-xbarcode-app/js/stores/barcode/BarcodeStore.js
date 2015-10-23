@@ -318,7 +318,17 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
           var canvasIdPrefix = '';
           if (renderItem.product) {
             canvasIdPrefix = renderItem.product.id;
-            barcodeContent = renderItem.product.id;
+            switch (SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_GENERATING_ATTRIBUTE).value) {
+              case 'ID':
+                barcodeContent = renderItem.product.id;
+                break;
+              case 'SKU':
+                barcodeContent= renderItem.product.sku;
+                break;
+              default:
+                barcodeContent = renderItem.product.id;
+                break;
+            }
           } else if (renderItem.anonymous) {
             canvasIdPrefix = renderItem.anonymous.id;
             barcodeContent = renderItem.anonymous.content;
