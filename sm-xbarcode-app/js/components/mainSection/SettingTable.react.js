@@ -6,6 +6,7 @@ var SettingStore = require('./../../stores/base/SettingStore');
 var IO = require('./settingTable/IO.react');
 var KeyValuePairs = require('./settingTable/KeyValuePairs.react');
 var Saver = require('./settingTable/Saver.react');
+var BarcodeTemplate = require('./settingTable/BarcodeTemplate.react');
 
 function _getState() {
   return {
@@ -34,6 +35,7 @@ var SettingTable = React.createClass({
       <div className={classNames('setting-table')}>
         <IO key="io" />
         <KeyValuePairs key="key-value-pairs" settings={this.state.settings} />
+        <BarcodeTemplate key="barcode-template" />
       </div>
     );
   },
