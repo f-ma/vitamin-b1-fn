@@ -25,6 +25,42 @@ $settings = array(
         'description' => 'Notice that some barcode symbologies support ONLY numeric character',
         'value' => 'CODE128',
     ),
+    array(
+        'label' => 'Top left of Product Barcode',
+        'code_name' => 'product_barcode_top_left',
+        'description' => 'The top left attribute/value of product barcode',
+        'value' => '',
+    ),
+    array(
+        'label' => 'Top middle of Product Barcode',
+        'code_name' => 'product_barcode_top_middle',
+        'description' => 'The top middle attribute/value of product barcode',
+        'value' => '',
+    ),
+    array(
+        'label' => 'Top right of Product Barcode',
+        'code_name' => 'product_barcode_top_right',
+        'description' => 'The top right attribute/value of product barcode',
+        'value' => '',
+    ),
+    array(
+        'label' => 'Bottom left of Product Barcode',
+        'code_name' => 'product_barcode_bottom_left',
+        'description' => 'The bottom left attribute/value of product barcode',
+        'value' => '',
+    ),
+    array(
+        'label' => 'Bottom middle of Product Barcode',
+        'code_name' => 'product_barcode_bottom_middle',
+        'description' => 'The bottom middle attribute/value of product barcode',
+        'value' => '',
+    ),
+    array(
+        'label' => 'Bottom right of Product Barcode',
+        'code_name' => 'product_barcode_bottom_right',
+        'description' => 'The bottom right attribute/value of product barcode',
+        'value' => '',
+    )
 );
 
 foreach ($settings as $setting) {
