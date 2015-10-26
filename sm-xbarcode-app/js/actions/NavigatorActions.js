@@ -12,6 +12,12 @@ var NavigatorActions = {
     });
   },
 
+  offMain: function() {
+    AppDispatcher.dispatch({
+      actionType: NavigatorConstants.NAVIGATOR_OFF_MAIN
+    });
+  },
+
   /**
    *
    * @param item

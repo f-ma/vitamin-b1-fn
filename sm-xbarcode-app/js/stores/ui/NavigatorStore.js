@@ -17,6 +17,14 @@ function _toggleMainNavigator() {
   _mainNavigatorShowed = !_mainNavigatorShowed;
 }
 
+function _offMainNavigator() {
+  if (!_mainNavigatorShowed) {
+    return false;
+  }
+  _mainNavigatorShowed = false;
+  return true;
+}
+
 var NavigatorStore = assign({}, EventEmitter.prototype, {
 
   /**
@@ -50,6 +58,12 @@ AppDispatcher.register(function(action) {
     case NavigatorConstants.NAVIGATOR_TOGGLE_MAIN:
       _toggleMainNavigator();
       NavigatorStore.emitToggleMainNavigator();
+      break;
+    case NavigatorConstants.NAVIGATOR_OFF_MAIN:
+      if (_offMainNavigator()) {
+        NavigatorStore.emitToggleMainNavigator();
+      }
+
       break;
   }
 });
