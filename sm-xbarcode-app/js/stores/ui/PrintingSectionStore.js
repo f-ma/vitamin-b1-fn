@@ -12,6 +12,8 @@ var BarcodeConstants = require('./../../constants/BarcodeConstants');
  */
 var CHANGE_EVENT = 'change';
 
+var PUSH_EVENT = 'push';
+
 /**
  *
  * @type {boolean}
@@ -75,11 +77,20 @@ var PrintingSectionStore = assign({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
+  emitPush: function() {
+    this.emit(PUSH_EVENT);
+  },
   addChangeListener: function(callback) {
     this.on(CHANGE_EVENT, callback);
   },
+  addPushListener: function(callback) {
+    this.on(PUSH_EVENT, callback);
+  },
   removeChangeListener: function(callback) {
     this.removeListener(CHANGE_EVENT, callback);
+  },
+  removePushListener: function(callback) {
+    this.removeListener(PUSH_EVENT, callback);
   }
 });
 

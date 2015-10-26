@@ -3,8 +3,11 @@
 var React = require('react');
 var classNames = require('classnames');
 var SettingStore = require('./../../../stores/base/SettingStore');
+var SettingConstants = require('./../../../constants/base/SettingConstants');
 var interact = require('interact.js');
 var NavigatorActions = require('./../../../actions/NavigatorActions');
+var Data = require('./../../../utils/Data');
+
 
 function _getState() {
   return null;
@@ -52,9 +55,9 @@ var BarcodeTemplate = React.createClass({
 
         // listen for drop related events:
 
-      ondropactivate: function (event) {
-        NavigatorActions.offMain();
-        // add active dropzone feedback
+        ondropactivate: function (event) {
+          NavigatorActions.offMain();
+          // add active dropzone feedback
           event.target.classList.add('drop-active');
 
         },
@@ -96,7 +99,9 @@ var BarcodeTemplate = React.createClass({
           event.target.style.borderColor = "#4d4d4d";
 
           var relatedTarget = event.relatedTarget;
+
           relatedTarget.addEventListener("dblclick", function(e) {
+            e.stopPropagation();
             e.target.parentNode.removeChild(e.target);
           });
 
@@ -118,6 +123,27 @@ var BarcodeTemplate = React.createClass({
 
           event.target.innerHTML = '';
           event.target.appendChild(relatedTarget);
+
+          switch (event.target.dataset.zone) {
+            case 'top-left':
+              Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_LEFT).id, value: event.relatedTarget.dataset.field}, false);
+              break;
+            case 'top-middle':
+              Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_MIDDLE).id, value: event.relatedTarget.dataset.field}, false);
+              break;
+            case 'top-right':
+              Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_RIGHT).id, value: event.relatedTarget.dataset.field}, false);
+              break;
+            case 'bottom-left':
+              Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_LEFT).id, value: event.relatedTarget.dataset.field}, false);
+              break;
+            case 'bottom-middle':
+              Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_MIDDLE).id, value: event.relatedTarget.dataset.field}, false);
+              break;
+            case 'bottom-right':
+              Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_RIGHT).id, value: event.relatedTarget.dataset.field}, false);
+              break;
+          }
         },
         ondropdeactivate: function (event) {
           // remove active dropzone feedback
@@ -159,6 +185,32 @@ var BarcodeTemplate = React.createClass({
 
   },
 
+  _handleDropzoneDbClick: function(event) {
+    event.target.classList.remove('active');
+    event.target.innerHTML = '';
+
+    switch (event.target.dataset.zone) {
+      case 'top-left':
+        Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_LEFT).id, value: ''}, false);
+        break;
+      case 'top-middle':
+        Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_MIDDLE).id, value: ''}, false);
+        break;
+      case 'top-right':
+        Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_RIGHT).id, value: ''}, false);
+        break;
+      case 'bottom-left':
+        Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_LEFT).id, value: ''}, false);
+        break;
+      case 'bottom-middle':
+        Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_MIDDLE).id, value: ''}, false);
+        break;
+      case 'bottom-right':
+        Data.Setting.update({id: SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_RIGHT).id, value: ''}, false);
+        break;
+    }
+  },
+
   render: function() {
     return (
       <div className="setting-barcode-template setting-group no-select">
@@ -167,19 +219,19 @@ var BarcodeTemplate = React.createClass({
         </div>
         <div className="action-zone" id="action-zone">
           <div className="side">
-            <div className="dropzone"></div>
-            <div className="dropzone"></div>
+            <div className={classNames('dropzone', {active: !!(SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_LEFT).value)})} data-zone="top-left" onDoubleClick={this._handleDropzoneDbClick}>{SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_LEFT).value}</div>
+            <div className={classNames('dropzone', {active: !!(SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_LEFT).value)})} data-zone="bottom-left" onDoubleClick={this._handleDropzoneDbClick}>{SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_LEFT).value}</div>
           </div>
           <div className="center">
-            <div className="top dropzone"></div>
+            <div className={classNames('dropzone', 'top', {active: !!(SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_MIDDLE).value)})} data-zone="top-middle" onDoubleClick={this._handleDropzoneDbClick}>{SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_MIDDLE).value}</div>
             <div className="barcode no-select">
               <span>BARCODE</span>
             </div>
-            <div className="bottom dropzone"></div>
+            <div className={classNames('dropzone', 'bottom', {active: !!(SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_MIDDLE).value)})} data-zone="bottom-middle" onDoubleClick={this._handleDropzoneDbClick}>{SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_MIDDLE).value}</div>
           </div>
           <div className="side">
-            <div className="dropzone"></div>
-            <div className="dropzone"></div>
+            <div className={classNames('dropzone', {active: !!(SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_RIGHT).value)})} data-zone="top-right" onDoubleClick={this._handleDropzoneDbClick}>{SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_TOP_RIGHT).value}</div>
+            <div className={classNames('dropzone', {active: !!(SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_RIGHT).value)})} data-zone="bottom-right" onDoubleClick={this._handleDropzoneDbClick}>{SettingStore.getSettingData(SettingConstants.CodeName.PRODUCT_BARCODE_TEMPLATE_BOTTOM_RIGHT).value}</div>
           </div>
         </div>
         <div className="element-zone" id="element-zone">

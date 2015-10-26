@@ -72,13 +72,46 @@
       display: flex;
       -webkit-flex-flow: row wrap;
       flex-flow: row wrap;
-      -webkit-justify-content: space-around;
-      justify-content: space-around;
-      canvas {
-        -webkit-flex-grow: 0;
-        flex-grow: 0;
-        -webkit-align-self: flex-start;
-        align-self: flex-start;
+      -webkit-justify-content: space-between;
+      justify-content: space-between;
+      .frame {
+        border: solid 1px #ccc;
+        font-family: monospace;
+        padding: 15px;
+        margin: 5px;
+        display: -webkit-flex;
+        display: flex;
+        flex-flow: row nowrap;
+        -webkit-align-items: center;
+        align-items: center;
+        .side {
+          .top {
+            margin-bottom: 5px;
+          }
+          .label {
+            text-transform: uppercase;
+          }
+          .value {
+
+          }
+        }
+        .central {
+          text-align: center;
+          text-transform: uppercase;
+          font-size: 1.2em;
+          font-weight: bold;
+          color: #222222;
+          margin: 0 5px;
+          .top {
+            margin-bottom: 5px;
+          }
+          .bottom {
+
+          }
+          .barcode {
+
+          }
+        }
       }
     }
 
@@ -812,11 +845,16 @@
       border: dashed 4px transparent;
       border-radius: 4px;
       transition: all 0.2s ease-in-out;
+      &.active {
+        background-color: orange;
+        color: white;
+        border-color: black;
+      }
     }
 
     .drop-active {
       border-color: #aaa;
-      color: #bbb
+      color: #bbb;
     }
 
     .drop-target {
@@ -882,7 +920,7 @@
           -webkit-flex-shrink: 0;
           flex-shrink: 0;
           width: 200px;
-          height: 100px;
+          height: 90px;
           margin: 10px 0;
         }
       }

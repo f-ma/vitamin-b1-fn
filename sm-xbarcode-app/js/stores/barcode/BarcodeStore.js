@@ -347,10 +347,18 @@ var BarcodeStore = assign({}, EventEmitter.prototype, {
               self.draw(newCanvas, barcodeContent, renderItem.options);
 
               /** Add the new product barcode canvas to printing section container */
-              PrintingSectionStore.addProductBarcodeItem(newCanvas);
+              PrintingSectionStore.addProductBarcodeItem({
+                product: renderItem.product,
+                canvas: newCanvas
+              });
+              //console.log(renderItem.product);
+              /*PrintingSectionStore.addProductBarcodeItem({
+
+                canvas: newCanvas
+              });*/
 
               /** Emit the changing of adding a brand new item to printing barcode container */
-              PrintingSectionStore.emitChange();
+              PrintingSectionStore.emitPush();
               quantityBishop++;
               _totalNumberBarcodeRendered++;
 

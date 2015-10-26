@@ -15,6 +15,7 @@ function _setData(data) {
 var SettingStore = assign({}, EventEmitter.prototype, {
   /**
    *
+   * @param codeName
    * @returns {*}
    */
   getSettingData: function(codeName) {
@@ -23,6 +24,10 @@ var SettingStore = assign({}, EventEmitter.prototype, {
 
   getMergedSettingData: function(data) {
      return assign({}, _data, data);
+  },
+
+  getProductBarcodeTemplateSetting: function() {
+
   },
 
   emitChange: function() {
