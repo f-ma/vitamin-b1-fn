@@ -4,6 +4,7 @@ var React = require('react');
 var classNames = require('classnames');
 var SettingStore = require('./../../../stores/base/SettingStore');
 var interact = require('interact.js');
+var NavigatorActions = require('./../../../actions/NavigatorActions');
 
 function _getState() {
   return null;
@@ -51,9 +52,11 @@ var BarcodeTemplate = React.createClass({
 
         // listen for drop related events:
 
-        ondropactivate: function (event) {
-          // add active dropzone feedback
+      ondropactivate: function (event) {
+        NavigatorActions.offMain();
+        // add active dropzone feedback
           event.target.classList.add('drop-active');
+
         },
         ondragenter: function (event) {
           var draggableElement = event.relatedTarget,
@@ -107,7 +110,8 @@ var BarcodeTemplate = React.createClass({
           substituteTarget.style.height = '80px';
           substituteTarget.dataset.x = '0';
           substituteTarget.dataset.y = '0';
-          substituteTarget.style.transform = 'none';
+          substituteTarget.style.transform = 'translate(0px, 0px)';
+          substituteTarget.style.webkitTransform = 'translate(0px, 0px)';
           substituteTarget.classList.remove('can-drop');
 
           event.relatedTarget.parentNode.appendChild(substituteTarget);
@@ -121,6 +125,7 @@ var BarcodeTemplate = React.createClass({
           event.target.classList.remove('drop-target');
           //event.target.style.borderColor = "transparent";
           event.relatedTarget.style.transform = 'translate(0px, 0px)';
+          event.relatedTarget.style.webkitTransform = 'translate(0px, 0px)';
           event.relatedTarget.dataset.x = '0';
           event.relatedTarget.dataset.y = '0';
         },
