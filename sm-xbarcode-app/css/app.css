@@ -776,3 +776,139 @@
 .setting-table .setting-group .selector select {
   border-color: #eeeeee;
 }
+.setting-table .setting-barcode-template {
+  height: 100%;
+  padding-top: 15px;
+}
+.setting-table .setting-barcode-template .no-drop {
+  cursor: no-drop !important;
+}
+.setting-table .setting-barcode-template .dropzone {
+  position: relative;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  color: transparent;
+  border: dashed 4px transparent;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+.setting-table .setting-barcode-template .drop-active {
+  border-color: #aaa;
+  color: #bbbbbb;
+}
+.setting-table .setting-barcode-template .drop-target {
+  color: white;
+  background-color: #29e;
+  border-color: #fff;
+  border-style: solid;
+}
+.setting-table .setting-barcode-template .drag-drop {
+  transition: width 0.2s ease-in-out, height 0.2s ease-in-out;
+}
+.setting-table .setting-barcode-template .drag-drop.can-drop {
+  color: #000;
+  background-color: #009688 !important;
+}
+.setting-table .setting-barcode-template .el {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  cursor: pointer;
+}
+.setting-table .setting-barcode-template .action-zone {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  padding: 60px 0;
+  width: 80%;
+  margin: auto;
+}
+.setting-table .setting-barcode-template .action-zone .side .dropzone .el,
+.setting-table .setting-barcode-template .action-zone .center .dropzone .el {
+  color: white;
+  -webkit-transform: none !important;
+  -moz-transform: none !important;
+  -ms-transform: none !important;
+  -o-transform: none !important;
+  transform: none !important;
+}
+.setting-table .setting-barcode-template .action-zone .side {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column nowrap;
+  flex-flow: column nowrap;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.setting-table .setting-barcode-template .action-zone .side .dropzone {
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 0;
+  flex-shrink: 0;
+  width: 200px;
+  height: 100px;
+  margin: 10px 0;
+}
+.setting-table .setting-barcode-template .action-zone .center .top,
+.setting-table .setting-barcode-template .action-zone .center .bottom {
+  height: 100px;
+}
+.setting-table .setting-barcode-template .action-zone .center .barcode {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+  color: #ccc;
+  cursor: no-drop;
+  height: 200px;
+  width: 365px;
+  background-color: grey;
+  font-weight: bold;
+  font-size: 1.5em;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: dashed 4px #ccc;
+  margin: 15px 0;
+}
+.setting-table .setting-barcode-template .element-zone {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-align-items: center;
+  align-items: center;
+  height: 200px;
+}
+.setting-table .setting-barcode-template .element-zone .el-container {
+  position: relative;
+  border: dashed 4px #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  width: 188px;
+  height: 88px;
+  overflow: visible;
+}
+.setting-table .setting-barcode-template .element-zone .el-container .el {
+  position: absolute;
+  width: 180px;
+  height: 80px;
+  background-color: #1b7fcc;
+  color: white;
+  border: 4px solid white;
+}
