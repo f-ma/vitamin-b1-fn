@@ -18,7 +18,7 @@
  */
 
  class SM_XBarcode_Adminhtml_XBarcode_SettingController extends Mage_Adminhtml_Controller_Action {
-   protected function _validateFormKey($formKey) {
+   protected function _validateUrlFormKey($formKey) {
      $sessionFormKey = Mage::getSingleton('core/session')->getFormKey();
      return ($formKey === $sessionFormKey);
    }
@@ -31,7 +31,7 @@
    }
 
    public function updateAction() {
-     if (!$this->_validateFormKey($this->getRequest()->getParam('fk'))) {
+     if (!$this->_validateUrlFormKey($this->getRequest()->getParam('fk'))) {
        return false;
      }
 
