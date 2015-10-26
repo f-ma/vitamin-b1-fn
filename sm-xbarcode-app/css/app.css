@@ -829,8 +829,7 @@
   justify-content: center;
   -webkit-align-items: center;
   align-items: center;
-  padding: 60px 0;
-  width: 80%;
+  padding: 60px 0 15px 0;
   margin: auto;
 }
 .setting-table .setting-barcode-template .action-zone .side .dropzone .el,
